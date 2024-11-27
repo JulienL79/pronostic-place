@@ -1,0 +1,10 @@
+footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 3rem;
+    width: 90%;
+    margin: 0 auto;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}

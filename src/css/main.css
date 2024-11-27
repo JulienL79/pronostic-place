@@ -1,0 +1,85 @@
+:root {
+    --font-family: "Roboto", sans-serif;
+    --font-size-logo: 3rem;
+    --font-size-nav-sm: 1.2rem;
+    --font-size-nav-md: 1.4rem;
+    --font-size-nav-lg: 1.6rem;
+    --font-size-h1-sm: 3.2rem;
+    --font-size-h1-lg: 4rem;
+    --font-size-h2-sm: 3rem;
+    --font-size-h2-lg: 3.2rem;
+    --font-size-h3-sm: 2rem;
+    --font-size-h3-lg: 2.4rem;
+    --font-size-h2-sm-dialog: 2rem;
+    --font-size-h3-sm-dialog: 1.4rem;
+    --font-size-text-sm-dialog: 1rem;
+    --font-size-body-sm: 1.2rem;
+    --font-size-body-md: 1.4rem;
+    --font-size-body-lg: 1.6rem;
+    --font-size-input-sm: 1rem;
+    --font-size-icon-xsm: 2.5rem;
+    --font-size-icon-sm: 3rem;
+    --font-size-icon-md: 4rem;
+    --font-size-icon-lg: 5rem;
+    --size-icon-xsm: 5rem;
+    --size-icon-sm: 6rem;
+    --size-icon-md: 8rem;
+    --size-icon-lg: 10rem;
+    --font-weight-logo: 800;
+    --font-weight-icon-after: 700;
+    --font-weight-title: 800;
+    --font-weight-body: 400;
+    --font-weight-other: 500;
+    --color-primary: #282d87;
+    --color-secondary: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-size: var(--font-size-body-lg);
+    font-family: var(--font-family);
+}
+
+h1 {
+	font-size: var(--font-size-h1-sm);
+    font-weight: var(--font-weight-title);
+    margin-bottom: 40px;
+}
+
+a {
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--color-secondary);
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.page {
+    min-height: 80vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem;
+}

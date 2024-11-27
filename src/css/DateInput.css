@@ -1,0 +1,62 @@
+.date-picker {
+    position: relative;
+    display: inline-block;
+}
+
+.date-picker input[type="text"] {
+    font-size: 12px;
+    padding: 5px 10px;
+    border: 2px solid #001367;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 220px;
+    background-color: #fff;
+    color: #333;
+}
+
+.date-picker input[type="text"]:focus {
+    border-color: #001367;
+    box-shadow: 0 0 10px #001367;
+}
+
+.flatpickr-day {
+    background-color: white;
+    color: #001367;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day:focus,
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover,
+.flatpickr-day.nextMonthDay.selected  {
+    background-color: #001367;
+    color: white;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    background-color: white;
+    color: #001367;
+    fill: #001367;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+    background-color: #001367;
+    color: white;
+    fill: white;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+    fill: white !important;  /* Utilisation de !important si nécessaire */
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    color: #001367;
+}
+
+.flatpickr-current-month input.cur-year {
+    color: #001367;
+}
