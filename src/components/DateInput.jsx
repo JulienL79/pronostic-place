@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import '../css/DateInput.css'
 
-export function DateInput({ game, setFilter }) {
-
+export function DateInput({ setFilter }) {
+    const { game } = useParams();
 
     // Function to enable only Tuesdays (2) and Fridays (5)
     function enableOnlyGameDay(date) {

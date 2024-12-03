@@ -1,45 +1,16 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { addData, updateIsCollected } from "../features/dataSlice";
-import axios from "axios";
-import { Loading } from "../components/Loading";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export function Predict() {
-    const dispatch = useDispatch();
-    const { datas, isCollected } = useSelector((state) => state.datas);
-    const [loading, setLoading] = useState(true);
+    const { datas } = useSelector((state) => state.datas);
+    const { game } = useParams();
 
-    useEffect(() => {
-        if(!isCollected) {
-            const collectData = async () => {
-                try {
-                    const response = await axios.get('https://euromillions.api.pedromealha.dev/draws');
-                    dispatch(addData(response.data.reverse()));
-                    dispatch(updateIsCollected());
-                    setLoading(false);
-                } catch (err) {
-                    console.error(err);
-                    setLoading(false);
-                }
-            }
-
-            collectData();
-        } else {
-            setLoading(false);
-        }
-    }, [isCollected, dispatch])
-
-    if(loading) {
-        return(
-            <div className="page">
-                <Loading/>
-            </div>
-        )
-    }
+    const capitalizedGame = game.charAt(0).toUpperCase() + game.slice(1);
 
     return(
         <div className="page">
-            {console.log("🚀 ~ Predict ~ datas:", datas)}
+            <h1>Pronostics {capitalizedGame}</h1>
+            <p>Suite à créer...</p>
         </div>
     )
 }

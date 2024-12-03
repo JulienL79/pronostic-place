@@ -9,14 +9,19 @@ export function Navbar() {
         <header>
             <div className="navbar">
                 <img className="logo" src="./icon.png" />
-                <nav className='big-nav'>
-                    <Link to={`/${game}`}>Pronostics</Link>
-                    <Link to={`/${game}/results`}>Résultats</Link>
-                </nav>
+                {
+                    game ?
+                        <nav className='big-nav'>
+                            <Link to={`/${game}/predicts`}>Pronostics</Link>
+                            <Link to={`/${game}/results`}>Résultats</Link>
+                        </nav>
+                        : null
+                }
+
             </div>
             <nav className="sub-nav">
-                <p onClick={() => setGame('euromillions')} className={`game ${game === 'euromillions' ? 'selected' : null}`}>Euromillions</p>
-                <p onClick={() => setGame('loto')} className={`game ${game === 'loto' ? 'selected' : null}`}>Loto</p>
+                <Link to={`/euromillions/`} onClick={() => setGame('euromillions')} className={`game ${game === 'euromillions' ? 'selected' : null}`}>Euromillions</Link>
+                <Link to={`/loto/`} onClick={() => setGame('loto')} className={`game ${game === 'loto' ? 'selected' : null}`}>Loto</Link>
             </nav>
         </header>
     )

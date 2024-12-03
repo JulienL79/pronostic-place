@@ -6,6 +6,8 @@ import { Footer } from "./components/Footer";
 import { Result } from "./pages/Result";
 import { Predict } from "./pages/Predict";
 import { NotFound } from "./pages/NotFound";
+import { Home } from "./pages/Home";
+import { DescriptionGame } from "./components/DescriptionGame";
 
 function App() {
 
@@ -14,9 +16,10 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Predict />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/:game/predicts" element={<Predict />} />
           <Route path="/:game/results" element={<Result />} />
-          
+          <Route path="/:game/" element={<DescriptionGame />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,3 +1,7 @@
 export function NotFound() {
-    return (<h1>Page non trouvée</h1>)
+    return (
+        <div className="page">
+            <h1>Page non trouvée</h1>
+        </div>
+    )
 }

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormatedDate } from "../features/FormatedDate";
 import '../css/Table.css'
 
-export function Table({ settings, datas }) {
+export function Table({ settings, datas, isFiltered }) {
     const isPaginated = settings.paginate ? true : false;
     const game = settings.game;
 
@@ -31,6 +31,12 @@ export function Table({ settings, datas }) {
         const goToLastPage = () => {
             if (currentPage < totalPages) setCurrentPage(totalPages);
         };
+
+        useEffect(() => {
+            if(isFiltered) {
+                setCurrentPage(1);
+            }
+        }, [isFiltered])
 
         return (
             <div>
@@ -89,13 +95,13 @@ export function Table({ settings, datas }) {
                         1
                     </button>
                     <button className='paginate-btn' onClick={goToPreviousPage} disabled={currentPage === 1}>
-                        <i class="fa-solid fa-backward"></i>
+                        <i className="fa-solid fa-backward"></i>
                     </button>
                     <span className='paginate-btn'>
                         {currentPage}
                     </span>
                     <button className='paginate-btn' onClick={goToNextPage} disabled={currentPage === totalPages}>
-                        <i class="fas fa-forward"></i>
+                        <i className="fas fa-forward"></i>
                     </button>
                     <button className='paginate-btn' onClick={goToLastPage} disabled={currentPage === totalPages}>
                         {totalPages}
