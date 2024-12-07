@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateFilterResult, updateFirstFilterPredict, updateSecondFilterPredict } from '../features/dataSlice';
 import '../css/DateInput.css'
 
-export function DateInput({ setFilter }) {
-    const { game } = useParams();
+export function DateInput({ type }) {
+    const { game, filterResult } = useSelector(state => state.datas)
+    const dispatch = useDispatch();
 
     // Function to enable only Tuesdays (2) and Fridays (5)
     function enableOnlyGameDay(date) {
@@ -34,17 +36,29 @@ export function DateInput({ setFilter }) {
                 // Lorsque la date est changée, on appelle setFilter avec la valeur sélectionnée
                 if (dateStr) {
                     // Si une date a été sélectionnée, on applique le filtre
-                    setFilter(dateStr);
+                    if(type === 'filter-result') {
+                        dispatch(updateFilterResult(dateStr));
+                    } else if (type === 'first-filter-predict') {
+                        dispatch(updateFirstFilterPredict(dateStr));
+                    } else if (type === 'second-filter-predict') {
+                        dispatch(updateSecondFilterPredict(dateStr));
+                    }
                 }
             }
         });
-    }, [game, setFilter])
+    }, [game, filterResult])
 
     const handleInputChange = (event) => {
         const value = event.target.value;
         if (!value) {
             // Si l'input est vide, on réinitialise le filtre
-            setFilter(null);
+            if(type === 'filter-result') {
+                dispatch(updateFilterResult(null));
+            } else if (type === 'first-filter-predict') {
+                dispatch(updateFirstFilterPredict(null));
+            } else if (type === 'second-filter-predict') {
+                dispatch(updateSecondFilterPredict(null));
+            }
         }
     };
 

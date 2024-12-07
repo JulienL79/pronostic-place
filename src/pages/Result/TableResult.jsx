@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { FormatedDate } from "../features/FormatedDate";
-import '../css/Table.css'
+import { FormatedDate } from "../../features/FormatedDate";
+import '../../css/Table.css'
 
-export function Table({ settings, datas, isFiltered }) {
+export function TableResult({ settings, datas, isFiltered }) {
     const isPaginated = settings.paginate ? true : false;
     const game = settings.game;
 

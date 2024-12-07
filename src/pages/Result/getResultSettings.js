@@ -1,4 +1,4 @@
-export function getSettings(game) {
+export function getResultSettings(game) {
 
     let settings = {};
     if(game === 'euromillions') {

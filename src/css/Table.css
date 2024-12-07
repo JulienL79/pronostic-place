@@ -1,9 +1,20 @@
 .table-container {
     overflow-y: auto; 
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre avec un léger décalage, flou et transparence */    
 }
 
 table {
     width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    position: sticky;
+    top: 0; /* Fixe la position en haut */
+    z-index: 1; /* Assure que l'en-tête reste au-dessus du corps */
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre avec un léger décalage, flou et transparence */
 }
 
 th, td {
@@ -95,4 +106,13 @@ button:disabled {
 .error {
     font-size: 24px;
     font-weight: var(--font-weight-title);
+}
+
+.scrollable-table {
+    max-height: 300px; /* Hauteur maximale avant que le défilement s'active */
+    overflow-y: auto; /* Active le défilement vertical */
+}
+
+::-webkit-scrollbar-track {
+    margin-top: 50px;
 }

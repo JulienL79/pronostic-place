@@ -78,8 +78,50 @@ a:hover {
 }
 
 .page {
-    min-height: 60vh;
+    min-height: 70vh;
     width: 90%;
     margin: 0 auto;
     padding: 4rem;
+}
+
+.paragraph {
+    width: 60%;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+/* ******************** SCROLLBAR *********************************** */
+
+body::-webkit-scrollbar {
+    display: none; /* Masque la scrollbar sur les navigateurs basés sur WebKit */
+}
+
+/* Style scrollbar pour Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px; /* Largeur et hauteur pour scroll horizontal */
+}
+
+/* Conteneur de la scrollbar */
+::-webkit-scrollbar-track {
+    background: var(--color-secondary); /* Piste de fond */
+    border-radius: 10px;
+    border: 1px solid var(--color-secondary); /* Bordure de la piste */
+}
+
+/* Poignée de la scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary); /* Couleur de la poignée */
+    border-radius: 10px; /* Arrondir les coins */
+    border: 3px solid var(--color-primary); /* Ajoute un espacement entre la piste et la poignée */
+}
+
+/* Poignée de la scrollbar au survol */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary); /* Couleur survolée */
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
 }

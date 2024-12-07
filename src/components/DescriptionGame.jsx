@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import '../css/DescriptionGame.css';
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export function DescriptionGame() {
-    const { game } = useParams();
-    console.log(game)
+    const { game } = useSelector((state) => state.datas)
 
     return (
         <div className="page">
