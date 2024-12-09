@@ -20,6 +20,7 @@ table thead {
 th, td {
     padding: 10px 0;
     text-align: center;
+    align-content: center;
 }
 
 th {
@@ -108,11 +109,48 @@ button:disabled {
     font-weight: var(--font-weight-title);
 }
 
+/* TABLE PREDICT */
+
 .scrollable-table {
     max-height: 300px; /* Hauteur maximale avant que le défilement s'active */
     overflow-y: auto; /* Active le défilement vertical */
+    width: 600px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.scrollable-table th {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 0;
+}
+
+.scrollable-table td {
+    width: auto;
+    padding: 5px 0;
+}
+
+.scrollable-table .ball,
+.scrollable-table .star {
+    width: 25px;
+    height: 25px;
+    font-size: 10px
+}
+
+.scrollable-table .filter-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+.scrollable-table .filter-header i {
+    font-size: 12px;
+}
+
+.scrollable-table .filter:hover {
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar-track {
-    margin-top: 50px;
+    margin-top: 40px;
 }

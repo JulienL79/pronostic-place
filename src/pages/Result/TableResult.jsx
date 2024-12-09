@@ -45,13 +45,13 @@ export function TableResult({ settings, datas, isFiltered }) {
                         1
                     </button>
                     <button className='paginate-btn' onClick={goToPreviousPage} disabled={currentPage === 1}>
-                        <i class="fa-solid fa-backward"></i>
+                        <i className="fa-solid fa-backward"></i>
                     </button>
                     <span className='paginate-btn'>
                         {currentPage}
                     </span>
                     <button className='paginate-btn' onClick={goToNextPage} disabled={currentPage === totalPages}>
-                        <i class="fas fa-forward"></i>
+                        <i className="fas fa-forward"></i>
                     </button>
                     <button className='paginate-btn' onClick={goToLastPage} disabled={currentPage === totalPages}>
                         {totalPages}
@@ -70,16 +70,16 @@ export function TableResult({ settings, datas, isFiltered }) {
                             {currentData.map((item, index) => (
                                 <tr key={index}>
                                     <td className='date'>{FormatedDate(item.date).fullDate}</td>
-                                    {item.numbers.map((number) => {
+                                    {item.numbers.map((number, index) => {
                                         return (
-                                            <td>
+                                            <td key={`ball-${index}`}>
                                                 <div className="ball">{number}</div>
                                             </td>
                                         )
                                     })}
-                                    {item.stars.map((star) => {
+                                    {item.stars.map((star, index) => {
                                         return (
-                                            <td>
+                                            <td key={`star-${index}`}>
                                                 <div className="star">{star}</div>
                                             </td>
                                         )

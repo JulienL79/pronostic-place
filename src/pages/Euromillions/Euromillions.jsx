@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateBonusDraw, updateNumberDraw, updateFilterResult, updateFirstFilterPredict, updateSecondFilterPredict } from "../../features/dataSlice";
+import { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateBonusDraw, updateNumberDraw, updateFilterResult, updateStartDatePredict, updateEndDatePredict, updateRecentFilter } from "../../features/dataSlice";
 import axios from "axios";
 import { DescriptionGame } from "../../components/DescriptionGame";
 import { Result } from "../Result/Result";
@@ -15,8 +15,6 @@ export function Euromillions() {
     const [loading, setLoading] = useState(true);
     const { page } = useParams();
 
-    dispatch(updateIsCollected(false));
-
     useEffect(() => {
         if(!isCollected) {
             const collectData = async () => {
@@ -25,12 +23,13 @@ export function Euromillions() {
                     const response = await axios.get('https://euromillions.api.pedromealha.dev/draws');
                     dispatch(addData(response.data.reverse()));
                     dispatch(updateMaxBonus(12));
-                    dispatch(updateMaxNumber(49));
+                    dispatch(updateMaxNumber(50));
                     dispatch(updateBonusDraw(2));
                     dispatch(updateNumberDraw(5));
                     dispatch(updateFilterResult(null));
-                    dispatch(updateFirstFilterPredict(null));
-                    dispatch(updateSecondFilterPredict(null));
+                    dispatch(updateRecentFilter(30));
+                    dispatch(updateStartDatePredict(null));
+                    dispatch(updateEndDatePredict(null));
                     dispatch(updateIsCollected(true));
                     setLoading(false);
                 } catch (err) {

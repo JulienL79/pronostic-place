@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateFilterResult, updateFirstFilterPredict, updateSecondFilterPredict } from '../features/dataSlice';
-import '../css/DateInput.css'
+import { updateEndDatePredict, updateFilterResult, updateStartDatePredict } from '../features/dataSlice';
+import '../css/DateInput.css';
 
 export function DateInput({ type }) {
-    const { game, filterResult } = useSelector(state => state.datas)
+    const { game, filterResult, startDatePredict, endDatePredict } = useSelector(state => state.datas)
     const dispatch = useDispatch();
 
     // Function to enable only Tuesdays (2) and Fridays (5)
@@ -21,7 +21,7 @@ export function DateInput({ type }) {
 
     useEffect(() => {
         // Initialize Flatpickr with the date filter
-        flatpickr("#date-input", {
+        flatpickr(`#${type}-input`, {
             dateFormat: "Y-m-d",        // Format: 2024-11-27
             altInput: true,            // Pretty display
             altFormat: "j F Y",       // Format: 27 November 2024
@@ -38,15 +38,18 @@ export function DateInput({ type }) {
                     // Si une date a été sélectionnée, on applique le filtre
                     if(type === 'filter-result') {
                         dispatch(updateFilterResult(dateStr));
-                    } else if (type === 'first-filter-predict') {
-                        dispatch(updateFirstFilterPredict(dateStr));
-                    } else if (type === 'second-filter-predict') {
-                        dispatch(updateSecondFilterPredict(dateStr));
+                    } else if (type === 'start-date-predict') {
+                        dispatch(updateStartDatePredict(dateStr));
+                    } else if (type === 'end-date-predict') {
+                        dispatch(updateEndDatePredict(dateStr));
                     }
                 }
             }
         });
-    }, [game, filterResult])
+
+        console.log(startDatePredict)
+        console.log(endDatePredict)
+    }, [game, filterResult, startDatePredict, endDatePredict]);
 
     const handleInputChange = (event) => {
         const value = event.target.value;
@@ -54,10 +57,10 @@ export function DateInput({ type }) {
             // Si l'input est vide, on réinitialise le filtre
             if(type === 'filter-result') {
                 dispatch(updateFilterResult(null));
-            } else if (type === 'first-filter-predict') {
-                dispatch(updateFirstFilterPredict(null));
-            } else if (type === 'second-filter-predict') {
-                dispatch(updateSecondFilterPredict(null));
+            } else if (type === 'start-date-predict') {
+                dispatch(updateStartDatePredict(null));
+            } else if (type === 'end-date-predict') {
+                dispatch(updateEndDatePredict(null));
             }
         }
     };
@@ -65,7 +68,7 @@ export function DateInput({ type }) {
     return (
         <>
             <div className="date-picker">
-                <input onInput={handleInputChange} type="text" id="date-input" placeholder="Selectionner une date" />
+                <input onInput={handleInputChange} type="text" id={`${type}-input`} placeholder="Selectionner une date" />
             </div>
         </>
     )

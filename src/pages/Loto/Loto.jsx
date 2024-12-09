@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateBonusDraw, updateNumberDraw, updateFilterResult, updateFirstFilterPredict, updateSecondFilterPredict } from "../../features/dataSlice";
+import { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateBonusDraw, updateNumberDraw, updateFilterResult } from "../../features/dataSlice";
 import axios from "axios";
 import { DescriptionGame } from "../../components/DescriptionGame";
 import { Result } from "../Result/Result";
