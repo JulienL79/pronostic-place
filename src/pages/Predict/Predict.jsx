@@ -26,32 +26,45 @@ export function Predict() {
         setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, recentFilter));
     }, [recentFilter, startDatePredict, endDatePredict])
 
-    return(
+    return (
         <div className="page">
             <h1>Pronostics {capitalizedGame}</h1>
             <p className="paragraph">Ce tableau regroupe toutes les statistiques du jeu {capitalizedGame} relatives à chacun des {maxNumber} numéros (depuis la création du jeu), ainsi que des {maxBonus} numéros bonus {game === 'euromillions' ? '(depuis l’instauration des 12 étoiles le 27/09/2016)' : ''}</p>
 
-            <h2 Style='text-align: left'>Recherche avancée</h2>
-            <div className="search-date">
-                <p>Date de début</p>
-                <DateInput type="start-date-predict"/>
-            </div>
-            <div className="search-date">
-                <p>Date de fin</p>
-                <DateInput type="end-date-predict"/>
-            </div>
-            <div className="search-date">
-                <p>Période de calcul de la forme actuelle</p>
-                <RecentFilter />
+            <div className="filter-bloc">
+                <h2 Style='text-align: left'>Recherche avancée</h2>
+                <fieldset>
+                    <legend>Filtre sur la période générale *</legend>
+                    <div className="search-date">
+                        <p>Date de début</p>
+                        <DateInput type="start-date-predict" />
+                    </div>
+                    <div className="search-date">
+                        <p>Date de fin</p>
+                        <DateInput type="end-date-predict" />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Filtre sur la période récente **</legend>
+                    <div className="search-date">
+                        <p>Période</p>
+                        <RecentFilter />
+                    </div>
+                </fieldset>
             </div>
 
             <div className="predict-div">
                 <h2>Statistiques des numéros principaux</h2>
-                <TablePredict settings={tableSettings} datas={numbersStats} type={'numbers'}/>
+                <TablePredict settings={tableSettings} datas={numbersStats} type={'numbers'} />
 
                 <h2>Statistiques des numéros bonus</h2>
-                <TablePredict settings={tableSettings} datas={bonusStats} type={'bonus'}/>
+                <TablePredict settings={tableSettings} datas={bonusStats} type={'bonus'} />
             </div>
+            <h2 Style='text-align: left'>Explications</h2>
+            <p className="paragraph">
+                Le numéro principal n°{numbersStats[0][0]} est sorti {numbersStats[0][1]} fois sur les {numbersStats[0][6]} tirages de la période définie (par défaut la totalité des tirages).
+                Sur cette période, ce numéro était tiré en moyenne tous les {numbersStats[0][4]} tirage(s), actuellement il n'est pas apparu depuis {numbersStats[0][5]} tirage(s). Son taux de sortie est {numbersStats[0][2] > 0 ? `supérieur de ${numbersStats[0][2]}` : `inférieur de ${-numbersStats[0][2]}`}% à la probabilité de sortie normale sur la période définie* et il est {numbersStats[0][3] > 0 ? `supérieur de ${numbersStats[0][3]}` : `inférieur de ${-numbersStats[0][3]}`}% sur la période récente**.
+            </p>
         </div>
     )
 }

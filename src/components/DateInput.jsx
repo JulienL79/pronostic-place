@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateEndDatePredict, updateFilterResult, updateStartDatePredict } from '../features/dataSlice';
 import '../css/DateInput.css';
 
 export function DateInput({ type }) {
     const { game, filterResult, startDatePredict, endDatePredict } = useSelector(state => state.datas)
+    const [errors, setErrors] = useState(null)
     const dispatch = useDispatch();
 
     // Function to enable only Tuesdays (2) and Fridays (5)
@@ -32,43 +33,57 @@ export function DateInput({ type }) {
                 }
             ],
             locale: "fr", // Optional: French localization
-            onChange: function (selectedDates, dateStr, instance) {
-                // Lorsque la date est changée, on appelle setFilter avec la valeur sélectionnée
+            onChange: function (selectedDates, dateStr) {
+                // Lorsque la date est changée, on appelle dispatch avec la valeur sélectionnée
+
                 if (dateStr) {
+                    setErrors(null);
                     // Si une date a été sélectionnée, on applique le filtre
                     if(type === 'filter-result') {
                         dispatch(updateFilterResult(dateStr));
                     } else if (type === 'start-date-predict') {
-                        dispatch(updateStartDatePredict(dateStr));
+                        if(endDatePredict && new Date(endDatePredict) < new Date(dateStr)) {
+                            setErrors('La date de début doit être antérieure à la date de fin')  
+                        } else {
+                            dispatch(updateStartDatePredict(dateStr));
+                        }
                     } else if (type === 'end-date-predict') {
-                        dispatch(updateEndDatePredict(dateStr));
+                        if(startDatePredict && new Date(startDatePredict) > new Date(dateStr)) {
+                            setErrors('La date de fin doit être postérieure à la date de début')
+                        } else {
+                            dispatch(updateEndDatePredict(dateStr));
+                        }
+                    }
+                }
+            },
+            onClose: function () {
+                // Vérifier si l'input est vide à la fermeture du calendrier
+                const inputElement = document.getElementById(`${type}-input`);
+                if (inputElement && !inputElement.value.trim()) {
+                    setErrors(null);
+                    if (type === 'filter-result') {
+                        dispatch(updateFilterResult(null));
+                    } else if (type === 'start-date-predict') {
+                        dispatch(updateStartDatePredict(null));
+                    } else if (type === 'end-date-predict') {
+                        dispatch(updateEndDatePredict(null));
                     }
                 }
             }
         });
 
-        console.log(startDatePredict)
-        console.log(endDatePredict)
-    }, [game, filterResult, startDatePredict, endDatePredict]);
-
-    const handleInputChange = (event) => {
-        const value = event.target.value;
-        if (!value) {
-            // Si l'input est vide, on réinitialise le filtre
-            if(type === 'filter-result') {
-                dispatch(updateFilterResult(null));
-            } else if (type === 'start-date-predict') {
-                dispatch(updateStartDatePredict(null));
-            } else if (type === 'end-date-predict') {
-                dispatch(updateEndDatePredict(null));
-            }
-        }
-    };
+    }, [game, filterResult, startDatePredict, endDatePredict, errors, dispatch]);
 
     return (
         <>
             <div className="date-picker">
-                <input onInput={handleInputChange} type="text" id={`${type}-input`} placeholder="Selectionner une date" />
+                <input type="text" id={`${type}-input`} placeholder="Selectionner une date" className={errors ? 'error-date' : null}/>
+                {
+                    errors ? 
+                        <div className="error-date">{errors}</div>
+                    :
+                    <></>
+                }
             </div>
         </>
     )

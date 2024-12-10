@@ -1,12 +1,13 @@
 .table-container {
     overflow-y: auto; 
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre avec un léger décalage, flou et transparence */    
+    padding: 0 5px 5px 5px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px;
 }
 
 table thead {
@@ -114,7 +115,7 @@ button:disabled {
 .scrollable-table {
     max-height: 300px; /* Hauteur maximale avant que le défilement s'active */
     overflow-y: auto; /* Active le défilement vertical */
-    width: 600px;
+    width: 700px;
     margin: 0 auto;
     font-size: 12px;
 }

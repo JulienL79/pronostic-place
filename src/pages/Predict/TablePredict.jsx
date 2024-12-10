@@ -11,8 +11,8 @@ export function TablePredict({ settings, datas, type }) {
     const [filters, setFilters] = useState({
         0: null,
         1: null,
-        2: null,
-        3: 'decroissant',
+        2: 'decroissant',
+        3: 'croissant',
         4: null,
         5: null,
         6: null

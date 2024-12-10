@@ -35,11 +35,9 @@ export function calculatePredict(allDraws, type, maxNumber, numberDraw, startDat
         parseFloat((((numberCount[number] || 0) / numberOfFilteredDraws - normalProbabilityNumber) * 100).toFixed(2)), // Écart général (%)
         parseFloat(((((recentCount[number] || 0) / recentDrawFilter) - normalProbabilityNumber) * 100).toFixed(2)), // Écart actuel (%)
         calculateGapStats(allGaps[0][number.toString()] || []), // Moyenne des écarts (général)
-        allGaps[1][number.toString()] === undefined ? allDraws.length : allGaps[1][number.toString()] // Écart actuel
+        allGaps[1][number.toString()] === undefined ? allDraws.length : allGaps[1][number.toString()], // Écart actuel
+        numberOfFilteredDraws
     ]);
-
-    // Étape 5 : Les mettre par défaut dans l'ordre croissant des numéros
-    const numberCountFiltered = numberCountArray.sort(([valueA, ], [valueB,]) => valueA - valueB);
 
     return numberCountArray;
 }

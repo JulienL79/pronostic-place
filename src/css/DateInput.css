@@ -1,6 +1,8 @@
 .date-picker {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .date-picker input[type="text"] {
@@ -13,6 +15,15 @@
     width: 220px;
     background-color: #fff;
     color: #333;
+}
+
+.date-picker input[type="text"].error-date {
+    border: 2px solid red;
+}
+
+.date-picker .error-date {
+    color: red;
+    font-size: 12px;
 }
 
 .date-picker input[type="text"]:focus {
