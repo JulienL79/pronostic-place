@@ -40,7 +40,11 @@ export function DateInput({ type }) {
                     setErrors(null);
                     // Si une date a été sélectionnée, on applique le filtre
                     if(type === 'filter-result') {
-                        dispatch(updateFilterResult(dateStr));
+                        if(new Date() < new Date(dateStr)) {
+                            setErrors("Aucun tirage n'a encore eu lieu à cette date")  
+                        } else {
+                            dispatch(updateFilterResult(dateStr));
+                        }
                     } else if (type === 'start-date-predict') {
                         if(endDatePredict && new Date(endDatePredict) < new Date(dateStr)) {
                             setErrors('La date de début doit être antérieure à la date de fin')  

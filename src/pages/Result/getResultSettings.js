@@ -5,7 +5,7 @@ export function getResultSettings(game) {
         settings = {
             game: 'euromillions',
             name: 'result',
-            title: [{name:'Tirage', col:1}, {name:'Numéros', col:7}],
+            title: [{name:'Tirages', col:1}, {name:'Numéros', col:7}],
             paginate: 10
         }
     }

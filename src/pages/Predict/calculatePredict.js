@@ -3,10 +3,10 @@ import { calculateProbabilities } from "./calculateProbabilities";
 import { filteredDraws } from "./filteredDraws";
 
 // Fonction qui retourne un tableau avec les données de tous les numéros, même ceux jamais sortis
-export function calculatePredict(allDraws, type, maxNumber, numberDraw, startDateFilter, endDateFilter, recentDrawFilter = 20) {
+export function calculatePredict(allDraws, type, maxNumber, numberDraw, startDateFilter, endDateFilter, recentDrawFilter, datasAlreadyFiltered = null) {
     const numberOfDraws = allDraws.length;
     const normalProbabilityNumber = calculateProbabilities(maxNumber, numberDraw);
-    const datasFiltered = filteredDraws(allDraws, startDateFilter, endDateFilter);
+    const datasFiltered = datasAlreadyFiltered ? datasAlreadyFiltered : filteredDraws(allDraws, startDateFilter, endDateFilter);
     const numberOfFilteredDraws = datasFiltered.length;
     console.log(datasFiltered)
 

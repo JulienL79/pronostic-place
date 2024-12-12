@@ -77,6 +77,10 @@ a:hover {
     text-decoration: none;
 }
 
+strong {
+    font-weight: bold;
+}
+
 .page {
     min-height: 70vh;
     width: 90%;
@@ -86,8 +90,49 @@ a:hover {
 
 .paragraph {
     width: 60%;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-align: left;
+}
+
+/* ******************** VARIOUS *********************************** */
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid var(--color-primary); /* Couleur et style de la bordure */
+    padding: 2rem;         /* Espacement interne */
+    border-radius: 10px;    /* Coins arrondis */
+    position: relative;    /* Nécessaire pour positionner le titre */
+    width: 30%;
+}
+
+fieldset:nth-of-type(1) {
+    width: 52%;
+}
+
+fieldset .search-date {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+fieldset .search-date p {
+    margin-top: 6px;
+}
+
+fieldset legend {
+    font-weight: bold;      /* Titre en gras */
+    color: var(--color-primary);            /* Couleur du texte */
+    padding: 0 0.5rem;      /* Espacement horizontal autour du titre */
+    background: var(--color-secondary);      /* Fond blanc pour cacher la bordure */
+    position: absolute;     /* Position au-dessus de la bordure */
+    top: -0.7rem;           /* Ajuster la hauteur du titre */
+    left: 1rem;             /* Espacement horizontal */
 }
 
 /* ******************** SCROLLBAR *********************************** */

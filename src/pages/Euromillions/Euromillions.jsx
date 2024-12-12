@@ -11,17 +11,17 @@ import { Loading } from "../../components/Loading";
 export function Euromillions() {
 
     const dispatch = useDispatch();
-    const { datas, isCollected } = useSelector((state) => state.datas);
+    const { datas, isCollected, game } = useSelector((state) => state.datas);
     const [loading, setLoading] = useState(true);
     const { page } = useParams();
 
     useEffect(() => {
-        if(!isCollected) {
+        if(!isCollected && game !== 'euromillions') {
             const collectData = async () => {
                 try {
-                    dispatch(updateGame('euromillions'));
                     const response = await axios.get('https://euromillions.api.pedromealha.dev/draws');
                     dispatch(addData(response.data.reverse()));
+                    dispatch(updateGame('euromillions'));
                     dispatch(updateMaxBonus(12));
                     dispatch(updateMaxNumber(50));
                     dispatch(updateBonusDraw(2));

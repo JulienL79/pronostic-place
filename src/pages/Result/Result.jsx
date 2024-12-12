@@ -24,10 +24,13 @@ export function Result() {
             <p className='paragraph'>Ce tableau regroupe tous les tirages de l’EuroMillions depuis la création du jeu (le 13/02/2004).</p>
 
             <div className='result-div'>
-                <div className="search-date">
-                    <p>Vous recherchez un tirage précis?</p>
-                    <DateInput type="filter-result"/>
-                </div>
+                <fieldset>
+                    <legend>Choix d'un tirage précis</legend>
+                    <div className="search-date">
+                        <p>Date</p>
+                        <DateInput type="filter-result"/>
+                    </div>
+                </fieldset>
                 <TableResult settings={tableSettings} datas={dataToShow} isFiltered={filterResult ? true : false} />
             </div>
         </div>
