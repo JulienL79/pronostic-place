@@ -36,7 +36,7 @@ export function Predict() {
                 
             <section>
                 <h2 Style='text-align: left'>Nos pronostics</h2>
-                <p className="paragraph">Vous trouverez ci-dessous nos pronostics qui tiennent compte de différents facteurs.</p>
+                <p className="paragraph">Notre logique de calcul des pronostics repose sur l'analyse statistique des données récentes pour évaluer les numéros et bonus en fonction de leur forme générale, leur écart moyen, et leur forme actuelle, afin de sélectionner les options les plus pertinentes selon un système de scores pondérés.</p>
                 <PredictNumber datasNumber={numbersStats} datasBonus={bonusStats}/>
             </section>
 

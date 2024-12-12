@@ -16,12 +16,11 @@ export function Euromillions() {
     const { page } = useParams();
 
     useEffect(() => {
-        if(!isCollected && game !== 'euromillions') {
+        if(!isCollected && game === 'euromillions') {
             const collectData = async () => {
                 try {
                     const response = await axios.get('https://euromillions.api.pedromealha.dev/draws');
                     dispatch(addData(response.data.reverse()));
-                    dispatch(updateGame('euromillions'));
                     dispatch(updateMaxBonus(12));
                     dispatch(updateMaxNumber(50));
                     dispatch(updateBonusDraw(2));
