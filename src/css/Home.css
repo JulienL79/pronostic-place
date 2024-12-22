@@ -1,0 +1,7 @@
+.home i {
+    color: var(--color-primary);
+}
+
+.home h2 {
+    text-align: left;
+}

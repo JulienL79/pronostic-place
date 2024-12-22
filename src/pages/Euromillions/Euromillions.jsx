@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateBonusDraw, updateNumberDraw, updateFilterResult, updateStartDatePredict, updateEndDatePredict, updateRecentFilter } from "../../features/dataSlice";
+import { addData, updateIsCollected, updateMaxNumber, updateMaxBonus, updateBonusDraw, updateNumberDraw, updateFilterResult, updateStartDatePredict, updateEndDatePredict, updateRecentFilter } from "../../features/dataSlice";
 import axios from "axios";
 import { DescriptionGame } from "../../components/DescriptionGame";
 import { Result } from "../Result/Result";
@@ -15,33 +15,30 @@ export function Euromillions() {
     const [loading, setLoading] = useState(true);
     const { page } = useParams();
 
-    useEffect(() => {
-        if(!isCollected && game === 'euromillions') {
-            const collectData = async () => {
-                try {
-                    const response = await axios.get('https://euromillions.api.pedromealha.dev/draws');
-                    dispatch(addData(response.data.reverse()));
-                    dispatch(updateMaxBonus(12));
-                    dispatch(updateMaxNumber(50));
-                    dispatch(updateBonusDraw(2));
-                    dispatch(updateNumberDraw(5));
-                    dispatch(updateFilterResult(null));
-                    dispatch(updateRecentFilter(30));
-                    dispatch(updateStartDatePredict(null));
-                    dispatch(updateEndDatePredict(null));
-                    dispatch(updateIsCollected(true));
-                    setLoading(false);
-                } catch (err) {
-                    console.error(err);
-                    setLoading(false);
-                }
-            }
-
-            collectData();
-        } else {
+    const collectData = async () => {
+        setLoading(true)
+        try {
+            const response = await axios.get('https://pronostic-place-backend.onrender.com/api/euromillions/draws');
+            dispatch(addData(response.data));
+            dispatch(updateMaxBonus(12));
+            dispatch(updateMaxNumber(50));
+            dispatch(updateBonusDraw(2));
+            dispatch(updateNumberDraw(5));
+            dispatch(updateFilterResult(null));
+            dispatch(updateRecentFilter(30));
+            dispatch(updateStartDatePredict(null));
+            dispatch(updateEndDatePredict(null));
+            dispatch(updateIsCollected(true));
+            setLoading(false);
+        } catch (err) {
+            console.error(err);
             setLoading(false);
         }
-    }, [isCollected, dispatch])
+    }
+
+    useEffect(() => {
+        collectData();
+    }, [game])
 
     if(loading) {
         return(

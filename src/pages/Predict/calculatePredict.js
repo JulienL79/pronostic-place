@@ -8,36 +8,38 @@ export function calculatePredict(allDraws, type, maxNumber, numberDraw, startDat
     const normalProbabilityNumber = calculateProbabilities(maxNumber, numberDraw);
     const datasFiltered = datasAlreadyFiltered ? datasAlreadyFiltered : filteredDraws(allDraws, startDateFilter, endDateFilter);
     const numberOfFilteredDraws = datasFiltered.length;
-    console.log(datasFiltered)
 
     // Étape 1 : Calculer le nombre de sortie de chaque numéro
-    const recapDraw = datasFiltered.flatMap(data => type === "numbers" ? data.numbers : data.stars);
+    const recapDraw = datasFiltered.flatMap(data => type === "numbers" ? data.numbers : data.bonus);
     const numberCount = Array.from({ length: maxNumber }, (_, i) => i + 1).reduce((obj, number) => {
-        obj[number] = recapDraw.filter(n => n === number.toString()).length || 0; // Compte le nombre de fois que le numéro est sorti
+        obj[number] = recapDraw.filter(n => n === number).length || 0; // Compte le nombre de fois que le numéro est sorti
         return obj;
     }, {});
 
     // Étape 2 : Calculer les sorties sur les `recentDraw` derniers tirages
     const recentDrawsData = allDraws.slice(-recentDrawFilter);
-    const recentRecapDraw = recentDrawsData.flatMap(data => type === "numbers" ? data.numbers : data.stars);
+    const recentRecapDraw = recentDrawsData.flatMap(data => type === "numbers" ? data.numbers : data.bonus);
     const recentCount = Array.from({ length: maxNumber }, (_, i) => i + 1).reduce((obj, number) => {
-        obj[number] = recentRecapDraw.filter(n => n === number.toString()).length || 0; // Compte pour les tirages récents
+        obj[number] = recentRecapDraw.filter(n => n === number).length || 0; // Compte pour les tirages récents
         return obj;
     }, {});
 
     // Étape 3 : Calculer les écarts actuels et généraux
-    const allGaps = calculateGap(allDraws, maxNumber, type, datasFiltered);
+    const [numberGaps, currentGaps] = calculateGap(allDraws, maxNumber, type, datasFiltered);
 
     // Étape 4 : Inclure tous les numéros dans le tableau final
-    const numberCountArray = Array.from({ length: maxNumber }, (_, i) => i + 1).map(number => [
+    const numberCountArray = Array.from({ length: maxNumber }, (_, i) => i + 1).map(number => {
+        const gapStat = calculateGapStats(numberGaps[number.toString()] || [])
+        return [
         number.toString(),
         numberCount[number] || 0, // Nombre de sorties totales
         parseFloat((((numberCount[number] || 0) / numberOfFilteredDraws - normalProbabilityNumber) * 100).toFixed(2)), // Écart général (%)
         parseFloat(((((recentCount[number] || 0) / recentDrawFilter) - normalProbabilityNumber) * 100).toFixed(2)), // Écart actuel (%)
-        calculateGapStats(allGaps[0][number.toString()] || []), // Moyenne des écarts (général)
-        allGaps[1][number.toString()] === undefined ? allDraws.length : allGaps[1][number.toString()], // Écart actuel
+        gapStat.averageBestGap, // Ecarts favorables
+        gapStat.averageWorthGap, // Ecarts défavorables
+        currentGaps[number.toString()] === undefined ? allDraws.length : currentGaps[number.toString()], // Écart actuel
         numberOfFilteredDraws
-    ]);
+    ]});
 
     return numberCountArray;
 }

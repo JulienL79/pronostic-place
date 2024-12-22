@@ -25,25 +25,23 @@ export function Predict() {
         console.log(startDatePredict)
         setNumbersStats(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, recentFilter));
         setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, recentFilter));
-        
-    }, [recentFilter, startDatePredict, endDatePredict])
 
-    console.log(numbersStats)
+    }, [recentFilter, startDatePredict, endDatePredict])
 
     return (
         <div className="page">
             <h1>Pronostics {capitalizedGame}</h1>
-                
+
             <section>
-                <h2 Style='text-align: left'>Nos pronostics</h2>
-                <p className="paragraph">Notre logique de calcul des pronostics repose sur l'analyse statistique des données récentes pour évaluer les numéros et bonus en fonction de leur forme générale, leur écart moyen, et leur forme actuelle, afin de sélectionner les options les plus pertinentes selon un système de scores pondérés.</p>
-                <PredictNumber datasNumber={numbersStats} datasBonus={bonusStats}/>
+                <h2 style={{ textAlign: 'left' }}>Nos pronostics</h2>
+                <p className="paragraph">Notre logique de calcul des pronostics repose sur l'analyse statistique des données récentes pour évaluer les numéros et bonus en fonction de leur <strong>forme générale, leurs écarts, et leur forme actuelle</strong>, afin de sélectionner les options les plus pertinentes selon un système de <strong>scores pondérés</strong>.</p>
+                <PredictNumber/>
             </section>
 
-            <p className="paragraph">Le tableau ci-dessous regroupe toutes les statistiques du jeu {capitalizedGame} relatives à chacun des {maxNumber} numéros (depuis la création du jeu), ainsi que des {maxBonus} numéros bonus {game === 'euromillions' ? '(depuis l’instauration des 12 étoiles le 27/09/2016)' : ''}</p>
+            <p className="paragraph">Le tableau ci-dessous regroupe toutes les statistiques du jeu {capitalizedGame} relatives à chacun des <strong>{maxNumber} numéros principaux</strong> (depuis {game === 'euromillions' ? '04/02/2014' : '06/10/2008'}), ainsi que des <strong>{maxBonus} numéros bonus</strong> {game === 'euromillions' ? '(depuis l’instauration des 12 étoiles le 27/09/2016)' : ''}</p>
 
             <div className="filter-bloc">
-                <h2 Style='text-align: left'>Recherche avancée</h2>
+                <h2 style={{ textAlign: 'left' }}>Recherche avancée</h2>
                 <fieldset>
                     <legend>Filtre sur la période générale *</legend>
                     <div className="search-date">
@@ -71,7 +69,7 @@ export function Predict() {
                 <h2>Statistiques des numéros bonus</h2>
                 <TablePredict settings={tableSettings} datas={bonusStats} type={'bonus'} />
             </div>
-            <h2 Style='text-align: left'>Explications</h2>
+            <h2 style={{ textAlign: 'left' }}>Explications</h2>
             <p className="paragraph">
                 Le numéro principal n°<strong>{numbersStats[0][0]}</strong> est sorti <strong>{numbersStats[0][1]}</strong> fois sur les <strong>{numbersStats[0][6]}</strong> tirages de la période générale* (par défaut la totalité des tirages).
                 Sur cette période, ce numéro était tiré en moyenne tous les <strong>{numbersStats[0][4]}</strong> tirage(s), actuellement il n'est pas apparu depuis <strong>{numbersStats[0][5]}</strong> tirage(s). Son taux de sortie est <strong>{numbersStats[0][2] > 0 ? `supérieur de ${numbersStats[0][2]}` : `inférieur de ${-numbersStats[0][2]}`}%</strong> à la probabilité de sortie normale sur la période générale* et il est <strong>{numbersStats[0][3] > 0 ? `supérieur de ${numbersStats[0][3]}` : `inférieur de ${-numbersStats[0][3]}`}%</strong> sur la période récente**.

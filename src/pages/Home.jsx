@@ -1,9 +1,31 @@
+import '../css/Home.css'
+
 export function Home() {
 
-    return(
-        <div className="page">
-            <h1>Page d'accueil</h1>
-            <h1>En cours de développement...</h1>
+    return (
+        <div className="page home">
+            <h1>À propos de notre site</h1>
+            <section className="intro">
+                <div className="container">
+                    <p className="paragraph">
+                        Vous cherchez les derniers résultats de l'<strong>Euromillions</strong> et du <strong>Loto</strong> ? Vous souhaitez
+                        maximiser vos chances de remporter le gros lot grâce à des pronostics fiables et des
+                        astuces de jeu ? Vous êtes au bon endroit !
+                    </p>
+                    <p className="paragraph">
+                        <strong>Sur notre plateforme, découvrez :</strong>
+                    </p>
+                    <ul style={{marginBottom: '40px'}}>
+                        <li><i className="fa-solid fa-right-long"></i> Les résultats en direct des tirages de l'Euromillions et du Loto</li>
+                        <li><i className="fa-solid fa-right-long"></i> Des outils de pronostics pour vous aider à choisir vos numéros</li>
+                        <li><i className="fa-solid fa-right-long"></i> Des statistiques détaillées pour analyser les tendances des tirages</li>
+                    </ul>
+                    <p className="paragraph">
+                        Que vous soyez joueur occasionnel ou amateur passionné, nous avons tout ce qu'il vous
+                        faut pour vivre pleinement votre expérience de jeu !
+                    </p>
+                </div>
+            </section>
         </div>
     )
 }

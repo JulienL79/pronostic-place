@@ -17,8 +17,8 @@ const dataSlice = createSlice({
   },
   reducers: {
     addData(state, action) {
-        state.datas = action.payload;
-      },
+      state.datas = action.payload;
+    },
     updateIsCollected(state, action) {
       state.isCollected = action.payload;
     },

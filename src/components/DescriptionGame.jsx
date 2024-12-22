@@ -12,7 +12,7 @@ export function DescriptionGame() {
                 <>
                     <h1>Qu'est-ce que l'EuroMillions ?</h1>
                     <p className="paragraph">
-                        L'EuroMillions est une loterie transnationale européenne créée en 2004. Elle
+                        L' <strong>EuroMillions</strong> est une loterie transnationale européenne créée en 2004. Elle
                         permet aux joueurs de plusieurs pays d'Europe de tenter leur chance pour remporter
                         des <em>jackpots colossaux</em>. Les participants choisissent <strong>cinq numéros principaux
                         ainsi que deux « étoiles chance »</strong> pour tenter de décrocher le gros lot.
@@ -28,17 +28,17 @@ export function DescriptionGame() {
                 <>
                     <h1>Qu'est-ce que le Loto ?</h1>
                     <p className="paragraph">
-                        Le Loto est un jeu de loterie très populaire en France, organisé par la Française
-                        des Jeux. Les joueurs doivent choisir une combinaison de numéros parmi une grille
+                        Le <strong>Loto</strong> est un jeu de loterie très populaire en France, organisé par la Française
+                        des Jeux. Les joueurs doivent choisir une combinaison de numéros parmi une grille de <strong>cinq numéros principaux</strong> et d'<strong>un numéro chance </strong>
                         afin de tenter leur chance de remporter un jackpot ou d'autres gains. Le principe
                         est simple : plus votre sélection de numéros correspond à celle tirée au sort,
                         plus vous gagnez.
                     </p>
                     <p className="paragraph">
-                        Lancé le 19 mai 1976, le Loto est devenu un pilier des jeux d'argent en France.
-                        Son succès repose sur ses tirages réguliers, ses gains attractifs et la simplicité
+                        Lancé le <strong>19 mai 1976</strong>, le Loto est devenu un pilier des jeux d'argent en France.
+                        Son succès repose sur ses <em>tirages réguliers</em>, ses gains attractifs et la simplicité
                         de ses règles. Le jeu a évolué au fil des années, avec l'ajout de nouvelles
-                        fonctionnalités comme le « Numéro Chance » et les jackpots boostés.
+                        fonctionnalités comme le <em>« Numéro Chance »</em> et les <em>jackpots boostés</em>.
                     </p>
                 </>
                 : <></>

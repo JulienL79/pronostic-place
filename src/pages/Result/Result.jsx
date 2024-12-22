@@ -14,6 +14,7 @@ export function Result() {
     const tableSettings = getResultSettings(game);
 
     useEffect(() => {
+        console.log(datas)
         const newDataToShow = showResult(datas, filterResult);
         setDataToShow(newDataToShow);
     }, [datas, filterResult])
@@ -21,7 +22,13 @@ export function Result() {
     return (
         <div className="page">
             <h1>Résultats {capitalizedGame}</h1>
-            <p className='paragraph'>Ce tableau regroupe tous les tirages de l’EuroMillions depuis la création du jeu (le 13/02/2004).</p>
+            {
+                game === 'euromillions' ?
+                    <p className='paragraph'>Ce tableau regroupe tous les tirages de l’EuroMillions depuis le passage à l'Euromillions - My Million (le 04/02/2014).</p>
+                : 
+                <p className='paragraph'>Ce tableau regroupe tous les tirages du loto depuis la mise en place du nouveau loto (le 06/10/2008).</p>
+            }
+            
 
             <div className='result-div'>
                 <fieldset>

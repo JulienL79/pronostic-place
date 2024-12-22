@@ -1,11 +1,27 @@
 .show-result {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    margin: 20px 20px 50px 20px;
+    margin: 20px 20px 40px 20px;
 }
 
 .bonus-result,
 .number-result {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: flex-start;
     gap: 5px;
 }
+
+@media (max-width: 570px) {
+
+    .number-result {
+        width: 230px;
+    }
+
+    .show-result {
+        margin: 10px 10px 20px 10px;
+    }
+}
+

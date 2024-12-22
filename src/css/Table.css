@@ -1,24 +1,28 @@
 .table-container {
-    overflow-y: auto; 
-    padding: 0 5px 5px 5px;
+    overflow-y: auto;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Ombre avec un léger décalage, flou et transparence */
-    border-radius: 10px;
 }
 
 table thead {
     position: sticky;
-    top: 0; /* Fixe la position en haut */
-    z-index: 1; /* Assure que l'en-tête reste au-dessus du corps */
+    top: 0;
+    /* Fixe la position en haut */
+    z-index: 1;
+    /* Assure que l'en-tête reste au-dessus du corps */
     background-color: var(--color-secondary);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre avec un léger décalage, flou et transparence */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
 }
 
-th, td {
+th,
+td {
     padding: 10px 0;
     text-align: center;
     align-content: center;
@@ -36,19 +40,19 @@ td {
 .date {
     font-weight: bold;
     width: 300px;
+    padding: 0 5px;
 }
 
-.star {
+.euromillions-bonus {
     width: 50px;
     height: 50px;
     margin: 0 auto;
     background: #eebb05;
-    clip-path: polygon(
-        50% 0%, 61% 35%, 98% 35%, 
-        68% 57%, 79% 91%, 50% 70%, 
-        21% 91%, 32% 57%, 2% 35%, 
-        39% 35%
-    ); /* Forme étoile */
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%,
+            68% 57%, 79% 91%, 50% 70%,
+            21% 91%, 32% 57%, 2% 35%,
+            39% 35%);
+    /* Forme étoile */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,11 +70,24 @@ td {
     height: 50px;
     margin: 0 auto;
     border-radius: 50%;
-    background: #001367;
-    color: white;
     font-size: 16px;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.euromillions {
+    background: #001367;
+    color: white;
+}
+
+.loto {
+    background: #00a2d9;
+    color: white;
+}
+
+.loto-bonus {
+    background: #ea3946;
+    color: white;
 }
 
 .pagination-controls {
@@ -78,6 +95,10 @@ td {
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
+}
+
+.pagination-controls:nth-of-type(1) {
+    margin-top: 30px;
 }
 
 .paginate-btn {
@@ -106,6 +127,7 @@ button:disabled {
 }
 
 .error {
+    margin: 20px 0;
     font-size: 24px;
     font-weight: var(--font-weight-title);
 }
@@ -113,45 +135,155 @@ button:disabled {
 /* TABLE PREDICT */
 
 .scrollable-table {
-    max-height: 300px; /* Hauteur maximale avant que le défilement s'active */
-    overflow-y: auto; /* Active le défilement vertical */
-    width: 700px;
     margin: 0 auto;
     font-size: 12px;
+    border-radius: 10px;
+    width: 100%;
 }
 
-.scrollable-table th {
+.scrollable-table .row-title {
     font-size: 16px;
+    height: 60px;
     font-weight: 600;
-    padding: 5px 0;
-}
-
-.scrollable-table td {
-    width: auto;
-    padding: 5px 0;
-}
-
-.scrollable-table .ball,
-.scrollable-table .star {
-    width: 25px;
-    height: 25px;
-    font-size: 10px
+    padding-right: 10px;
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px 10px 0 0;
 }
 
 .scrollable-table .filter-header {
     display: flex;
+    flex: 1;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 0 2px;
     gap: 2px;
 }
+
 .scrollable-table .filter-header i {
     font-size: 12px;
 }
 
-.scrollable-table .filter:hover {
+.scrollable-table .filter-header:hover {
     cursor: pointer;
 }
 
-::-webkit-scrollbar-track {
-    margin-top: 40px;
+.scrollable-table .data {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 2px;
+}
+
+.scrollable-table .row,
+.scrollable-table .row-title {
+    display: flex;
+    width: 100%;
+}
+
+.scrollable-table .row>* {
+    flex: 1;
+    text-align: center;
+    min-width: 14%;
+}
+
+.scrollable-table .table-body {
+    max-height: 250px;
+    overflow-y: auto;
+    /* Active le défilement vertical */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px;
+}
+
+.scrollable-table .ball,
+.scrollable-table .euromillions-bonus,
+.scrollable-table .loto-bonus {
+    width: 25px;
+    height: 25px;
+    font-size: 10px
+}
+@media (max-width: 900px) {
+    .table-container .ball,
+    .table-container .euromillions-bonus {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    th {
+        font-size: var(--font-size-h3-sm)
+    }
+
+    .ball {
+        width: 40px;
+        height: 40px;
+    }
+
+    .euromillions-bonus {
+        width: 40px;
+        height: 40px;
+    }
+
+    .scrollable-table .row-title {
+        font-size: 12px;
+        height: 50px;
+    }
+
+    .scrollable-table .data {
+        font-size: 10px;
+    }
+
+    .paginate-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .scrollable-table .row-title {
+        font-size: 10px;
+    }
+
+    .table-container .ball,
+    .table-container .euromillions-bonus {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .table-container .date {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 470px) {
+
+    th {
+        font-size: var(--font-size-body-lg)
+    }
+
+    .scrollable-table .row-title {
+        font-size: 9px;
+    }
+
+    .scrollable-table .data {
+        font-size: 8px;
+    }
+
+    .table-container .ball,
+    .table-container .euromillions-bonus {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .table-container .date {
+        font-size: 10px;
+        padding: 0 5px;
+    }
 }

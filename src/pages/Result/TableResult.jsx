@@ -3,13 +3,17 @@ import { FormatedDate } from "../../features/FormatedDate";
 import '../../css/Table.css'
 
 export function TableResult({ settings, datas, isFiltered }) {
-    const isPaginated = settings.paginate ? true : false;
+    const [currentPage, setCurrentPage] = useState(settings.paginate ? 1 : null);
+    const itemsPerPage = settings.paginate;
     const game = settings.game;
 
-    if (isPaginated && datas.length > 0) {
-        const [currentPage, setCurrentPage] = useState(1);
-        const itemsPerPage = settings.paginate;
-        // const NbOfColumn = settings.title.reduce((acc, value) => acc + value.col, 0);
+    useEffect(() => {
+        if(isFiltered) {
+            setCurrentPage(1);
+        }
+    }, [isFiltered])
+
+    if (currentPage && datas.length > 0) {
 
         // Calculer les index pour la pagination
         const totalPages = Math.ceil(datas.length / itemsPerPage);
@@ -32,12 +36,6 @@ export function TableResult({ settings, datas, isFiltered }) {
             if (currentPage < totalPages) setCurrentPage(totalPages);
         };
 
-        useEffect(() => {
-            if(isFiltered) {
-                setCurrentPage(1);
-            }
-        }, [isFiltered])
-
         return (
             <div>
                 <div className="pagination-controls">
@@ -57,34 +55,33 @@ export function TableResult({ settings, datas, isFiltered }) {
                         {totalPages}
                     </button>
                 </div>
-                <div className="table-container">
+                <div className="table-container table">
                     <table>
                         <thead>
                             <tr>
-                                {settings.title.map((title) => {
-                                    return (<th colSpan={title.col} key={title.name}>{title.name}</th>)
+                                {settings.title.map((title, index) => {
+                                    return (<th colSpan={title.col} key={`title.name-${index}`}>{title.name}</th>)
                                 })}
                             </tr>
                         </thead>
                         <tbody>
-                            {currentData.map((item, index) => (
-                                <tr key={index}>
+                            {currentData.map((item, rowIndex) => (
+                                <tr key={`raw-${rowIndex}`}>
                                     <td className='date'>{FormatedDate(item.date).fullDate}</td>
-                                    {item.numbers.map((number, index) => {
+                                    {item.numbers.map((number, colIndex) => {
                                         return (
-                                            <td key={`ball-${index}`}>
-                                                <div className="ball">{number}</div>
+                                            <td key={`ball-${colIndex}-${rowIndex}-${number}`}>
+                                                <div className={`ball ${game === 'euromillions' ? 'euromillions' : 'loto'}`}>{number}</div>
                                             </td>
                                         )
                                     })}
-                                    {item.stars.map((star, index) => {
+                                    {item.bonus.map((bonus, colIndex) => {
                                         return (
-                                            <td key={`star-${index}`}>
-                                                <div className="star">{star}</div>
+                                            <td key={`bonus-${colIndex}-${rowIndex}-${bonus}`}>
+                                                <div className={`${game === 'euromillions' ? 'euromillions-bonus' : 'ball loto-bonus'}`}>{bonus}</div>
                                             </td>
                                         )
                                     })}
-                                    {/* <td><a href={`https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/resultats/${FormatedDate(item.date).shortDate}`}>Détail</a></td> */}
                                 </tr>
                             ))}
                         </tbody>

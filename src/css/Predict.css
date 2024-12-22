@@ -15,3 +15,9 @@ h2 {
 .filter-bloc h2 {
     flex-basis: 100%;
 }
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: var(--font-size-h3-sm);
+    }
+}

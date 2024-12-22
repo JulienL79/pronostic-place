@@ -9,3 +9,10 @@
     background-color: #fff;
     color: #333;
 }
+
+@media (max-width: 768px) {
+
+    .recent-filter select {
+        width: 150px;
+    }
+}

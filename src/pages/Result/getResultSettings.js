@@ -9,5 +9,13 @@ export function getResultSettings(game) {
             paginate: 10
         }
     }
+    if(game === 'loto') {
+        settings = {
+            game: 'loto',
+            name: 'result',
+            title: [{name:'Tirages', col:1}, {name:'Numéros', col:6}],
+            paginate: 10
+        }
+    }
     return settings;
 }
