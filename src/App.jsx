@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Router>
+      <Router basename="/pronostic-place">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
