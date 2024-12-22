@@ -22,7 +22,6 @@ export function Predict() {
     const tableSettings = getPredictSettings(game);
 
     useEffect(() => {
-        console.log(startDatePredict)
         setNumbersStats(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, recentFilter));
         setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, recentFilter));
 

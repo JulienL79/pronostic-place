@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://julienl79.github.io/pronostic-place/",
+  "homepage": "https://julienl79.github.io/pronostic-place",
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",

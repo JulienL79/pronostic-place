@@ -13,20 +13,20 @@ export function Navbar() {
         <header>
             <div className="header-container">
                 <div className="navbar">
-                    <Link className='no-link' to="/pronostic-place"><img className="logo" src={Icon} /></Link>
+                    <Link className='no-link' to="/"><img className="logo" src={Icon} /></Link>
                     {
                         game ?
                             <nav className='big-nav'>
-                                <Link to={`/pronostic-place/${game}/predicts`}>Pronostics</Link>
-                                <Link to={`/pronostic-place/${game}/results`}>Résultats</Link>
+                                <Link to={`/${game}/predicts`}>Pronostics</Link>
+                                <Link to={`/${game}/results`}>Résultats</Link>
                             </nav>
                             : null
                     }
 
                 </div>
                 <nav className="sub-nav">
-                    <Link to={`/pronostic-place/euromillions/home`} onClick={() => dispatch(updateGame('euromillions'))} className={`game ${game === 'euromillions' ? 'selected' : null}`}>Euromillions</Link>
-                    <Link to={`/pronostic-place/loto/home`} onClick={() => dispatch(updateGame('loto'))} className={`game ${game === 'loto' ? 'selected' : null}`}>Loto</Link>
+                    <Link to={`/euromillions/home`} onClick={() => dispatch(updateGame('euromillions'))} className={`game ${game === 'euromillions' ? 'selected' : null}`}>Euromillions</Link>
+                    <Link to={`/loto/home`} onClick={() => dispatch(updateGame('loto'))} className={`game ${game === 'loto' ? 'selected' : null}`}>Loto</Link>
                 </nav>
             </div>
         </header>

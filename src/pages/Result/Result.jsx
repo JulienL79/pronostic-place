@@ -14,7 +14,6 @@ export function Result() {
     const tableSettings = getResultSettings(game);
 
     useEffect(() => {
-        console.log(datas)
         const newDataToShow = showResult(datas, filterResult);
         setDataToShow(newDataToShow);
     }, [datas, filterResult])
