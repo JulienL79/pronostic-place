@@ -18,9 +18,9 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/euromillions/:page" element={<Euromillions />} />
-          <Route path="/loto/:page" element={<Loto />} />
+          <Route exact path="/pronostic-place" element={<Home />} />
+          <Route path="/pronostic-place/euromillions/:page" element={<Euromillions />} />
+          <Route path="/pronostic-place/loto/:page" element={<Loto />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

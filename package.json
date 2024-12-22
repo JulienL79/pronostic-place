@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://JulienL79.github.io/pronostic-place/",
+  "homepage": "https://julienl79.github.io/pronostic-place/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
