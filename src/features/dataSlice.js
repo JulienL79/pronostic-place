@@ -13,7 +13,8 @@ const dataSlice = createSlice({
     filterResult: null,
     recentFilter: null,
     startDatePredict: null,
-    endDatePredict: null
+    endDatePredict: null,
+    isUpdate: false
   },
   reducers: {
     addData(state, action) {
@@ -49,8 +50,11 @@ const dataSlice = createSlice({
     updateEndDatePredict(state, action) {
       state.endDatePredict = action.payload;
     },
+    setUpdated(state) {
+      state.isUpdate = true;
+    }
   },
 });
 
-export const { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateNumberDraw, updateBonusDraw, updateFilterResult, updateRecentFilter, updateStartDatePredict, updateEndDatePredict } = dataSlice.actions;
+export const { addData, updateIsCollected, updateGame, updateMaxNumber, updateMaxBonus, updateNumberDraw, updateBonusDraw, updateFilterResult, updateRecentFilter, updateStartDatePredict, updateEndDatePredict, setUpdated } = dataSlice.actions;
 export default dataSlice.reducer;

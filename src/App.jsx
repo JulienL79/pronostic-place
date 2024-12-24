@@ -10,6 +10,7 @@ import { Home } from "./pages/Home";
 import { DescriptionGame } from "./components/DescriptionGame";
 import { Euromillions } from "./pages/Euromillions/Euromillions";
 import { Loto } from "./pages/Loto/Loto";
+import { useState } from "react";
 
 function App() {
 
