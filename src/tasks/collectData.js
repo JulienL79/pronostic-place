@@ -13,7 +13,6 @@ export const DataCollector = () => {
     const maxBonus = game === 'euromillions' ? 12 : 10
     const bonusDraw = game === 'euromillions' ? 2 : 1
     const numberDraw = game === 'euromillions' ? 5 : 5
-    console.log(game)
 
     const collectData = async () => {
         dispatch(updateIsCollected(false))
@@ -34,8 +33,6 @@ export const DataCollector = () => {
                     throw new Error('Server not alive')
                 }
             }
-
-            console.log(game === 'euromillions' ? 'euromillions' : 'loto')
 
             const response = await axios.get(`${API_URL}/${game === 'euromillions' ? 'euromillions' : 'loto'}/draws`,
                 {
