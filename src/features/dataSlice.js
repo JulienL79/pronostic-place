@@ -19,6 +19,10 @@ const dataSlice = createSlice({
   reducers: {
     addData(state, action) {
       state.datas = action.payload;
+      state.isCollected = true;
+      state.startDatePredict = null;
+      state.endDatePredict = null;
+      state.filterResult = null;
     },
     updateIsCollected(state, action) {
       state.isCollected = action.payload;

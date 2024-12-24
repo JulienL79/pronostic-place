@@ -7,52 +7,23 @@ import { DescriptionGame } from "../../components/DescriptionGame";
 import { Result } from "../Result/Result";
 import { Predict } from "../Predict/Predict";
 import { Loading } from "../../components/Loading";
+import { DataCollector } from "../../tasks/collectData";
 
 export function Euromillions() {
 
     const dispatch = useDispatch();
     const { datas, isCollected, game, isUpdate } = useSelector((state) => state.datas);
-    const [loading, setLoading] = useState(true);
     const { page } = useParams();
 
-    const collectData = async () => {
-        setLoading(true)
-        try {
-            if(!isUpdate) {
-                const updateData = await axios.get('https://pronostic-place-backend.onrender.com/api/update')
-                if(updateData.status === 200) {
-                    dispatch(setUpdated())
-                    console.log('Server alive')
-                }  else {
-                    throw new Error ('Server not alive')
-                }
-            }
-            const response = await axios.get('https://pronostic-place-backend.onrender.com/api/euromillions/draws');
-            dispatch(addData(response.data));
-            dispatch(updateMaxBonus(12));
-            dispatch(updateMaxNumber(50));
-            dispatch(updateBonusDraw(2));
-            dispatch(updateNumberDraw(5));
-            dispatch(updateFilterResult(null));
-            dispatch(updateRecentFilter(30));
-            dispatch(updateStartDatePredict(null));
-            dispatch(updateEndDatePredict(null));
-            dispatch(updateIsCollected(true));
-            setLoading(false);
-        } catch (err) {
-            console.error(err);
-            setLoading(false);
-        }
-    }
-
     useEffect(() => {
-        collectData();
+        dispatch(updateIsCollected(false))
     }, [game])
 
-    if(loading) {
-        return(
+    if (!isCollected) {
+        return (
             <div className="page">
-                <Loading/>
+                <DataCollector />
+                <Loading />
             </div>
         )
     }
@@ -61,12 +32,12 @@ export function Euromillions() {
         <>
             {
                 page === 'home' ?
-                    <DescriptionGame/>
-                : page === 'results' ?
-                    <Result/>
-                : page === 'predicts' ?
-                    <Predict/>
-                : <></>
+                    <DescriptionGame />
+                    : page === 'results' ?
+                        <Result />
+                        : page === 'predicts' ?
+                            <Predict />
+                            : <></>
             }
         </>
     )
