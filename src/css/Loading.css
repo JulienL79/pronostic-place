@@ -53,3 +53,19 @@
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 768px) {
+    .loading-text {
+        margin-top: 40px;
+        font-size: var(--font-size-h3-sm);
+    }
+    .loader {
+        width: 150px;
+        height: 150px;
+    }
+    .spinner {
+        border: 6px solid transparent;
+        /* Bordures transparentes */
+        border-top: 6px solid var(--color-primary);
+    }
+}

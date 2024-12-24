@@ -17,7 +17,7 @@ export function calculatePredict(allDraws, type, maxNumber, numberDraw, startDat
     }, {});
 
     // Étape 2 : Calculer les sorties sur les `recentDraw` derniers tirages
-    const recentDrawsData = allDraws.slice(-recentDrawFilter);
+    const recentDrawsData = allDraws.slice(0, recentDrawFilter);
     const recentRecapDraw = recentDrawsData.flatMap(data => type === "numbers" ? data.numbers : data.bonus);
     const recentCount = Array.from({ length: maxNumber }, (_, i) => i + 1).reduce((obj, number) => {
         obj[number] = recentRecapDraw.filter(n => n === number).length || 0; // Compte pour les tirages récents
