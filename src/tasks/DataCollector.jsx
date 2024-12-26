@@ -46,7 +46,7 @@ export const DataCollector = () => {
             dispatch(updateMaxNumber(maxNumber));
             dispatch(updateBonusDraw(bonusDraw));
             dispatch(updateNumberDraw(numberDraw));
-            dispatch(updateRecentFilter(30));
+            dispatch(updateRecentFilter(3));
             dispatch(addData(response.data));
         } catch (err) {
             console.error(err);

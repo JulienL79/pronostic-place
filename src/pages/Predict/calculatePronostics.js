@@ -1,68 +1,64 @@
 import { calculatePredict } from "./calculatePredict";
 import { useSelector } from "react-redux";
 
-export function calculatePronostics() {
-    const { datas, maxBonus, maxNumber, numberDraw, bonusDraw, recentFilter } = useSelector((state) => state.datas);
-    const datasFiltered = datas.slice(recentFilter);
+export const calculatePronostics = () => {
+    const { datas, maxBonus, maxNumber, numberDraw, bonusDraw, startDatePredict, endDatePredict , recentFilter } = useSelector((state) => state.datas);
     const numbersName = 'numbers';
     const bonusName = 'bonus';
+    if (datas && recentFilter) {
 
-    const numberStatsFiltered = calculatePredict(datas, numbersName, maxNumber, numberDraw, null, null, recentFilter, datasFiltered)
-    const bonusStatsFiltered = calculatePredict(datas, bonusName, maxBonus, bonusDraw, null, null, recentFilter, datasFiltered)
+        const currentDate = new Date()
+        const dateRecentDrawFilter = new Date(currentDate)
+        dateRecentDrawFilter.setMonth(currentDate.getMonth() - recentFilter)
+        const datasFiltered = datas.filter(draw => new Date(draw.date) < dateRecentDrawFilter);
 
-    function chooseBestNumbers(stats, nBest = 10) {
-        const scoredData = stats.map(([num, sorties, formeGenerale, formeActuelle, ecartFav, ecartDefav, ecartActuel]) => {
-            // Critère 1 : Forme générale positive
-            const formeGeneraleAccepted = -0.2
-            const formeGeneraleScore = (formeGenerale > formeGeneraleAccepted) ? Math.min(1, (formeGenerale + 1) / 2) : 0;
+        const numberStatsFiltered = calculatePredict(datas, numbersName, maxNumber, numberDraw, startDatePredict, endDatePredict, dateRecentDrawFilter, datasFiltered)
+        const bonusStatsFiltered = calculatePredict(datas, bonusName, maxBonus, bonusDraw, startDatePredict, endDatePredict, dateRecentDrawFilter, datasFiltered)
 
-            // Critère 2 : Proximité de l'écart favorable
-            let favorabilityScore = 0;
-            const diffFav = Math.abs(ecartFav - ecartActuel);
-            if (diffFav <= 1) {
-                favorabilityScore = 1;  // Très proche
-            } else if (diffFav <= 2) {
-                favorabilityScore = 0.75;  // Modérément proche
-            } else if (diffFav <= 3) {
-                favorabilityScore = 0.5;  // Encore plus éloigné
-            }
+        function chooseBestNumbers(stats, nBest = 10) {
+            const scoredData = stats.map(([num, sorties, formeGenerale, formeActuelle, ecartFav, ecartDefav, ecartActuel]) => {
+                // Critère 1 : Forme générale positive
+                const formeGeneraleAccepted = -0.2
+                const formeGeneraleScore = (formeGenerale > formeGeneraleAccepted) ? Math.min(1, (formeGenerale + 1) / 2) : 0;
 
-            // Critère 3 : Proximité de l'écart défavorable (score négatif)
-            let unfavorabilityScore = 0;
-            const diffDefav = Math.abs(ecartDefav - ecartActuel);
-            if (diffDefav <= 1) {
-                unfavorabilityScore = -1;  // Très proche
-            } else if (diffDefav <= 2) {
-                unfavorabilityScore = -0.75;  // Modérément proche
-            } else if (diffDefav <= 3) {
-                unfavorabilityScore = -0.5;  // Encore plus éloigné
-            }
+                // Critère 2 : Proximité de l'écart favorable
+                let favorabilityScore = 0;
+                const diffFav = Math.abs(ecartFav - ecartActuel);
+                const diffDefav = Math.abs(ecartDefav - ecartActuel);
+                if (diffFav < diffDefav) {
+                    favorabilityScore = 0.75;
+                    if (diffFav <= 2) {
+                        favorabilityScore += 0.25
+                    }
+                }
 
-            // Critère 4 : Forme générale - Forme actuelle
-            const formeDiff = formeGenerale - formeActuelle;
-            let formeDiffScore = 0;
-            if (formeDiff > 0) {
-                formeDiffScore = Math.min(1, formeDiff / 5);  // Plus la différence est grande, plus le score est élevé
-            } else if (formeDiff === 0) {
-                formeDiffScore = 0.5;  // Si égales, score médian
-            }
+                // Critère 3 : Forme générale - Forme actuelle
+                const formeDiff = formeGenerale - formeActuelle;
+                let formeDiffScore = 0;
+                if (formeDiff > 0) {
+                    formeDiffScore = Math.min(1, formeDiff / 5);  // Plus la différence est grande, plus le score est élevé
+                } else if (formeDiff > -0.2) {
+                    formeDiffScore = 0.5;  // Si égales, score médian
+                }
 
-            // Calcul du score total
-            const totalScore = formeGeneraleScore + favorabilityScore + unfavorabilityScore + formeDiffScore;
+                // Calcul du score total
+                const totalScore = formeGeneraleScore + favorabilityScore + formeDiffScore;
 
-            // Retourne l'objet avec le score calculé
-            return { num, score: totalScore, rawData: [num, sorties, formeGenerale, formeActuelle, ecartFav, ecartDefav, ecartActuel] };
-        });
+                // Retourne l'objet avec le score calculé
+                return { num, score: totalScore, rawData: [num, sorties, formeGenerale, formeActuelle, ecartFav, ecartDefav, ecartActuel] };
+            });
 
-        // Trier les numéros par score de pertinence décroissant
-        scoredData.sort((a, b) => b.score - a.score);  // Tri décroissant
+            // Trier les numéros par score de pertinence décroissant
+            scoredData.sort((a, b) => b.score - a.score);  // Tri décroissant
 
-        // Retourner les n meilleurs numéros
-        return scoredData.slice(0, nBest).map(item => [item.num, item.score]);
+            // Retourner les n meilleurs numéros
+            return scoredData.slice(0, nBest).map(item => [item.num, item.score]);
+        }
+
+        const bestNumbers = chooseBestNumbers(numberStatsFiltered, 10)
+        const bestBonus = chooseBestNumbers(bonusStatsFiltered, 3)
+
+        return [bestNumbers, bestBonus];
     }
 
-    const bestNumbers = chooseBestNumbers(numberStatsFiltered, 10)
-    const bestBonus = chooseBestNumbers(bonusStatsFiltered, 3)
-
-    return [bestNumbers, bestBonus];
 }

@@ -54,6 +54,10 @@ h1 {
     margin-bottom: 40px;
 }
 
+em {
+    font-style: italic;
+}
+
 a {
     position: relative;
 }

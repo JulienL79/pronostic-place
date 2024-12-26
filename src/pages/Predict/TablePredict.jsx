@@ -38,7 +38,6 @@ export function TablePredict({ settings, datas, type }) {
     }
 
     if (datas.length > 0) {
-        // const NbOfColumn = settings.title.reduce((acc, value) => acc + value.col, 0);
 
         return (
             <div className="scrollable-table table">

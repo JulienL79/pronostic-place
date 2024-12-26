@@ -7,7 +7,7 @@ import { DescriptionGame } from "../../components/DescriptionGame";
 import { Result } from "../Result/Result";
 import { Predict } from "../Predict/Predict";
 import { Loading } from "../../components/Loading";
-import { DataCollector } from "../../tasks/collectData";
+import { DataCollector } from "../../tasks/DataCollector";
 
 export function Loto() {
 

@@ -43,6 +43,13 @@
     color: var(--color-primary);
 }
 
+.small-text {
+    margin-top: 10px;
+    font-size: var(--font-size-h3-sm);
+    color: var(--color-primary);
+    text-align: center;
+}
+
 /* Animation pour le spinner */
 @keyframes spin {
     0% {
@@ -59,13 +66,19 @@
         margin-top: 40px;
         font-size: var(--font-size-h3-sm);
     }
+
     .loader {
         width: 150px;
         height: 150px;
     }
+
     .spinner {
         border: 6px solid transparent;
         /* Bordures transparentes */
         border-top: 6px solid var(--color-primary);
+    }
+
+    .small-text {
+        font-size: var(--font-size-body-lg)
     }
 }

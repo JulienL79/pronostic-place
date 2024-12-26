@@ -6,7 +6,7 @@ import '../css/RecentFilter.css'
 export function RecentFilter() {
     // Récupère la valeur de RecentFilter du store Redux
     const RecentFilter = useSelector(state => state.datas.RecentFilter);
-    const [selectedValue, setSelectedValue] = useState(30); // Initialise avec la valeur de Redux
+    const [selectedValue, setSelectedValue] = useState(3); // Initialise avec la valeur de Redux
     const dispatch = useDispatch();
 
     // Synchronise `selectedValue` avec `RecentFilter` à chaque changement du store Redux
@@ -27,9 +27,9 @@ export function RecentFilter() {
     return (
         <div className='recent-filter'>
             <select name="recent-date" id="recent-date" value={selectedValue} onChange={handleChange}>
-                <option value={10}>Le dernier mois</option>
-                <option value={30}>Les 3 derniers mois</option>
-                <option value={60}>Les 6 derniers mois</option>
+                <option value={1}>Le dernier mois</option>
+                <option value={3}>Les 3 derniers mois</option>
+                <option value={6}>Les 6 derniers mois</option>
             </select>
         </div>
     )

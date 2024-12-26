@@ -15,15 +15,18 @@ import { PredictNumber } from "./PredictNumber";
 export function Predict() {
     const { datas, maxBonus, maxNumber, game, numberDraw, bonusDraw, recentFilter, startDatePredict, endDatePredict } = useSelector((state) => state.datas);
     const bonusDatas = game === 'euromillions' ? filteredDraws(datas, '2016-09-27', null) : datas;
-    const [numbersStats, setNumbersStats] = useState(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, recentFilter))
-    const [bonusStats, setBonusStats] = useState(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, recentFilter))
+    const currentDate = new Date()
+    const dateRecentDrawFilter = new Date(currentDate)
+    dateRecentDrawFilter.setMonth(currentDate.getMonth() - recentFilter)
+    const [numbersStats, setNumbersStats] = useState(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, dateRecentDrawFilter))
+    const [bonusStats, setBonusStats] = useState(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, dateRecentDrawFilter))
 
     const capitalizedGame = game.charAt(0).toUpperCase() + game.slice(1);
     const tableSettings = getPredictSettings(game);
 
     useEffect(() => {
-        setNumbersStats(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, recentFilter));
-        setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, recentFilter));
+        setNumbersStats(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, dateRecentDrawFilter));
+        setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, dateRecentDrawFilter));
 
     }, [recentFilter, startDatePredict, endDatePredict])
 
