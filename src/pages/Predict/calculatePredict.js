@@ -38,7 +38,6 @@ export function calculatePredict(allDraws, type, maxNumber, numberDraw, startDat
         gapStat.averageBestGap, // Ecarts favorables
         gapStat.averageWorthGap, // Ecarts défavorables
         currentGaps[number.toString()] === undefined ? allDraws.length : currentGaps[number.toString()], // Écart actuel
-        numberOfFilteredDraws
     ]});
 
     return numberCountArray;
