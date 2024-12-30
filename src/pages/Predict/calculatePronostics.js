@@ -36,7 +36,7 @@ export const calculatePronostics = () => {
                 const formeDiff = formeGenerale - formeActuelle;
                 let formeDiffScore = 0;
                 if (formeDiff > 0) {
-                    formeDiffScore = Math.min(1, formeDiff / 5);  // Plus la différence est grande, plus le score est élevé
+                    formeDiffScore = Math.min(1, formeDiff / 3);  // Plus la différence est grande, plus le score est élevé
                 } else if (formeDiff > -0.2) {
                     formeDiffScore = 0.5;  // Si égales, score médian
                 }
