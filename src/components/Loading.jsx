@@ -13,7 +13,10 @@ export function Loading() {
             <p className="loading-text">Chargement en cours</p>
             {
                 !isUpdate ?
-                    <p className="small-text">Démarrage du serveur <br/>&#40;<em>Cette opération peut prendre plusieurs minutes</em>&#41;</p>
+                    <>
+                        <p className="small-text">Démarrage du serveur</p>
+                        <p className="small-text">&#40;<em>Cette opération peut prendre plusieurs minutes</em>&#41;</p>
+                    </>
                 :
                     <></>
             }
