@@ -27,6 +27,7 @@ export const DataCollector = () => {
                     }
                 )
                 if (updateData.status === 200) {
+                    console.log(API_URL)
                     dispatch(setUpdated())
                     console.log('Server alive')
                 } else {
