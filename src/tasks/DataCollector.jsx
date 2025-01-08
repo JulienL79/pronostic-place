@@ -18,7 +18,7 @@ export const DataCollector = () => {
         dispatch(updateIsCollected(false))
         try {
             if (!isUpdate) {
-                const updateData = await axios.post(`${API_URL}/update`,
+                const updateData = await axios.get(`${API_URL}/update`,
                     {
                         headers: {
                             'Content-Type': 'application/json',
