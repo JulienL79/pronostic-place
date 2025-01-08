@@ -86,7 +86,7 @@ strong {
 }
 
 .page {
-    min-height: 70vh;
+    min-height: 75vh;
     width: 90%;
     margin: 0 auto;
     padding: 4rem;
@@ -96,6 +96,10 @@ strong {
     width: 70%;
     margin-bottom: 30px;
     text-align: left;
+}
+
+#root {
+    min-height: 100vh;
 }
 
 /* ******************** VARIOUS *********************************** */
