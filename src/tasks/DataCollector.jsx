@@ -17,7 +17,6 @@ export const DataCollector = () => {
     const collectData = async () => {
         dispatch(updateIsCollected(false))
         try {
-            console.log(API_URL)
             if (!isUpdate) {
                 const updateData = await axios.get(`${API_URL}/update`,
                     {
