@@ -73,8 +73,8 @@ export function Predict() {
             </div>
             <h2 style={{ textAlign: 'left' }}>Explications</h2>
             <p className="paragraph">
-                Le numéro principal n°<strong>{numbersStats[0][0]}</strong> est sorti <strong>{numbersStats[0][1]}</strong> fois sur les <strong>{numbersStats[0][6]}</strong> tirages de la période générale* (par défaut la totalité des tirages).
-                Sur cette période, ce numéro était tiré en moyenne tous les <strong>{numbersStats[0][4]}</strong> tirage(s), actuellement il n'est pas apparu depuis <strong>{numbersStats[0][5]}</strong> tirage(s). Son taux de sortie est <strong>{numbersStats[0][2] > 0 ? `supérieur de ${numbersStats[0][2]}` : `inférieur de ${-numbersStats[0][2]}`}%</strong> à la probabilité de sortie normale sur la période générale* et il est <strong>{numbersStats[0][3] > 0 ? `supérieur de ${numbersStats[0][3]}` : `inférieur de ${-numbersStats[0][3]}`}%</strong> sur la période récente**.
+                Le numéro principal n°<strong>{numbersStats[0][0]}</strong> a été tiré <strong>{numbersStats[0][1]}</strong> fois sur les <strong>{numbersStats[0][7]}</strong> tirages de la période générale* (par défaut la totalité des tirages).
+                Sur cette période, ce numéro est sorti majoritairement tous les <strong>{numbersStats[0][4]}</strong> tirage(s), et il est le plus rarement sorti aux alentours des <strong>{numbersStats[0][5]}</strong> tirage(s). Actuellement il n'est pas apparu depuis <strong>{numbersStats[0][6]}</strong> tirage(s). Son taux de sortie est <strong>{numbersStats[0][2] > 0 ? `supérieur de ${numbersStats[0][2]}` : `inférieur de ${-numbersStats[0][2]}`}%</strong> à la probabilité de sortie normale sur la période générale* et il est <strong>{numbersStats[0][3] > 0 ? `supérieur de ${numbersStats[0][3]}` : `inférieur de ${-numbersStats[0][3]}`}%</strong> sur la période récente**.
             </p>
         </div>
     )
