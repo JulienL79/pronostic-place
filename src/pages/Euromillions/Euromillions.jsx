@@ -22,7 +22,6 @@ export function Euromillions() {
     if (!isCollected) {
         return (
             <div className="page">
-                <DataCollector />
                 <Loading />
             </div>
         )

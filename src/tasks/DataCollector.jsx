@@ -34,20 +34,23 @@ export const DataCollector = () => {
                 }
             }
 
-            const response = await axios.get(`${API_URL}/${game === 'euromillions' ? 'euromillions' : 'loto'}/draws`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                }
-            );
-            dispatch(updateMaxBonus(maxBonus));
-            dispatch(updateMaxNumber(maxNumber));
-            dispatch(updateBonusDraw(bonusDraw));
-            dispatch(updateNumberDraw(numberDraw));
-            dispatch(updateRecentFilter(3));
-            dispatch(addData(response.data));
+            if(game) {
+                const response = await axios.get(`${API_URL}/${game === 'euromillions' ? 'euromillions' : 'loto'}/draws`,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                        },
+                    }
+                );
+                dispatch(updateMaxBonus(maxBonus));
+                dispatch(updateMaxNumber(maxNumber));
+                dispatch(updateBonusDraw(bonusDraw));
+                dispatch(updateNumberDraw(numberDraw));
+                dispatch(updateRecentFilter(3));
+                dispatch(addData(response.data));
+            }
+            
         } catch (err) {
             console.error(err);
             dispatch(updateIsCollected(true))

@@ -22,7 +22,6 @@ export function Loto() {
     if (!isCollected) {
         return (
             <div className="page">
-                <DataCollector />
                 <Loading />
             </div>
         )

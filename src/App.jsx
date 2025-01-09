@@ -8,6 +8,7 @@ import { Result } from "./pages/Result/Result";
 import { Predict } from "./pages/Predict/Predict";
 import { NotFound } from "./pages/NotFound";
 import { Home } from "./pages/Home";
+import { DataCollector } from "./tasks/DataCollector";
 import { DescriptionGame } from "./components/DescriptionGame";
 import { Euromillions } from "./pages/Euromillions/Euromillions";
 import { Loto } from "./pages/Loto/Loto";
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <Provider store={store}>
+      <DataCollector />
       <Router basename="/pronostic-place">
         <Navbar />
         <Routes>
