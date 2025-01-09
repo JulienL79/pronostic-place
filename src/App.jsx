@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { Navbar } from "./components/Navbar";
@@ -19,9 +20,30 @@ function App() {
       <Router basename="/pronostic-place">
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/euromillions/:page" element={<Euromillions />} />
-          <Route path="/loto/:page" element={<Loto />} />
+          <Route exact path="/" element={
+            <>
+              <Helmet>
+                <title>Pronostic Place - Résultats et pronostics</title>
+              </Helmet>
+              <Home />
+            </>
+          } />
+          <Route path="/euromillions/:page" element={
+            <>
+              <Helmet>
+                <title>Euromillions - Résultats et pronostics</title>
+              </Helmet>
+              <Euromillions />
+            </>
+          } />
+          <Route path="/loto/:page" element={
+            <>
+              <Helmet>
+                <title>Loto - Résultats et pronostics</title>
+              </Helmet>
+              <Loto />
+          </>
+          } />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

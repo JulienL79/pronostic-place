@@ -4,7 +4,7 @@ export function Home() {
 
     return (
         <div className="page home">
-            <h1>À propos de notre site</h1>
+            <h1>Pronostic Place</h1>
             <section className="intro">
                 <div className="container">
                     <p className="paragraph">
