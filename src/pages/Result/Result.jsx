@@ -25,7 +25,7 @@ export function Result() {
               <title>{capitalizedGame} - Résultats</title>
             </Helmet>
             <div className="page">
-                <h1>{capitalizedGame}: Derniers résultats</h1>
+                <h1>{capitalizedGame}: Historique des résultats</h1>
                 {
                     game === 'euromillions' ?
                         <p className='paragraph'>Ce tableau regroupe tous les tirages de l’EuroMillions depuis le passage à l'Euromillions - My Million (le 04/02/2014).</p>
