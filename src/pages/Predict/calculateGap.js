@@ -60,9 +60,12 @@ export function calculateGap(allDraws, maxNumber, type, filteredDraws) {
 export function calculateGapStats(gaps) {
     if (gaps.length === 0) return 0;
 
+    const adjustedGaps = gaps.map(gap => gap + 1);
+
+
     // Étape 1 : Calcul des fréquences de chaque écart
     const frequencyMap = {};
-    gaps.forEach(gap => {
+    adjustedGaps.forEach(gap => {
         frequencyMap[gap] = (frequencyMap[gap] || 0) + 1;
     });
 
