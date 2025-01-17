@@ -11,33 +11,48 @@ import { DateInput } from "../../components/DateInput";
 import { RecentFilter } from "../../components/RecentFilter";
 import '../../css/Predict.css';
 import { PredictNumber } from "./PredictNumber";
+import { Loading } from "../../components/Loading";
 
 
 export function Predict() {
-    const { datas, maxBonus, maxNumber, game, numberDraw, bonusDraw, recentFilter, startDatePredict, endDatePredict } = useSelector((state) => state.datas);
-    const bonusDatas = game === 'euromillions' ? filteredDraws(datas, '2016-09-27', null) : datas;
-    const currentDate = new Date()
-    const dateRecentDrawFilter = new Date(currentDate)
-    dateRecentDrawFilter.setMonth(currentDate.getMonth() - recentFilter)
-    const [numbersStats, setNumbersStats] = useState(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, dateRecentDrawFilter))
-    const [bonusStats, setBonusStats] = useState(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, dateRecentDrawFilter))
+    const { datas, maxBonus, maxNumber, game, numberDraw, bonusDraw, recentFilter, startDatePredict, endDatePredict, isCollected } = useSelector((state) => state.datas);
+    const [numbersStats, setNumbersStats] = useState([])
+    const [bonusStats, setBonusStats] = useState([])
+    const [bonusDatas, setBonusDatas] = useState([])
+    const [isCalculed, setIsCalculed] = useState(false)
 
     const capitalizedGame = game.charAt(0).toUpperCase() + game.slice(1);
     const tableSettings = getPredictSettings(game);
+    const currentDate = new Date()
+    const dateRecentDrawFilter = new Date(currentDate)
+    dateRecentDrawFilter.setMonth(currentDate.getMonth() - recentFilter)
 
     useEffect(() => {
-        setNumbersStats(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, dateRecentDrawFilter));
-        setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, dateRecentDrawFilter));
+        if(isCollected) {
+            setBonusDatas(game === 'euromillions' ? filteredDraws(datas, '2016-09-27', null) : datas)
+            setNumbersStats(calculatePredict(datas, "numbers", maxNumber, numberDraw, startDatePredict, endDatePredict, dateRecentDrawFilter));
+            setBonusStats(calculatePredict(bonusDatas, "bonus", maxBonus, bonusDraw, startDatePredict, endDatePredict, dateRecentDrawFilter));
+            setIsCalculed(true)    
+        } 
+    }, [recentFilter, startDatePredict, endDatePredict, isCollected])
 
-    }, [recentFilter, startDatePredict, endDatePredict])
+    if (!isCollected || !isCalculed) {
 
+        return (
+            <div className="page">
+                <Loading />
+            </div>
+        )
+
+    }
+    
     return (
         <>
             <Helmet>
-              <title>{capitalizedGame} - Pronostics</title>
+                <title>{capitalizedGame} - Pronostics</title>
             </Helmet>
             <div className="page">
-                <h1>{capitalizedGame}: Nos prédictions</h1>
+                <h1>{capitalizedGame} : Nos prédictions</h1>
 
                 <section>
                     <h2 style={{ textAlign: 'left' }}>Nos pronostics</h2>

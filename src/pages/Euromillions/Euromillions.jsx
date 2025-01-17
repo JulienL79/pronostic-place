@@ -19,14 +19,6 @@ export function Euromillions() {
         dispatch(updateIsCollected(false))
     }, [game])
 
-    if (!isCollected) {
-        return (
-            <div className="page">
-                <Loading />
-            </div>
-        )
-    }
-
     return (
         <>
             {
