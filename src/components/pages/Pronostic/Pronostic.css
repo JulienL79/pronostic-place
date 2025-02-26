@@ -1,0 +1,35 @@
+.pronostics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.filter-bloc {
+    order: 2;
+}
+
+.table-bloc {
+    order: 1;
+}
+
+@media (max-width: 920px) {
+    .filter-bloc {
+        order: 1;
+    }
+    
+    .table-bloc {
+        order: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .pronostics {
+        max-width: 240px;
+    }
+}
+
+@media (max-width: 470px) {
+    .pronostics {
+        max-width: 170px;
+    }
+}

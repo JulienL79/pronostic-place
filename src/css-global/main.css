@@ -1,0 +1,260 @@
+:root {
+    --font-family: "Roboto", sans-serif;
+    --font-size-logo: 3rem;
+    --font-size-nav-sm: 1.2rem;
+    --font-size-nav-md: 1.4rem;
+    --font-size-nav-lg: 1.6rem;
+    --font-size-h1-sm: 3.2rem;
+    --font-size-h1-lg: 4rem;
+    --font-size-h2-sm: 3rem;
+    --font-size-h2-lg: 3.2rem;
+    --font-size-h3-sm: 2rem;
+    --font-size-h3-lg: 2.4rem;
+    --font-size-h2-sm-dialog: 2rem;
+    --font-size-h3-sm-dialog: 1.4rem;
+    --font-size-text-sm-dialog: 1rem;
+    --font-size-body-sm: 1.2rem;
+    --font-size-body-md: 1.4rem;
+    --font-size-body-lg: 1.6rem;
+    --font-size-input-sm: 1rem;
+    --font-size-icon-xsm: 2.5rem;
+    --font-size-icon-sm: 3rem;
+    --font-size-icon-md: 4rem;
+    --font-size-icon-lg: 5rem;
+    --size-icon-xsm: 5rem;
+    --size-icon-sm: 6rem;
+    --size-icon-md: 8rem;
+    --size-icon-lg: 10rem;
+    --font-weight-logo: 800;
+    --font-weight-icon-after: 700;
+    --font-weight-title: 800;
+    --font-weight-body: 400;
+    --font-weight-other: 500;
+    --color-primary: #282d87;
+    --color-secondary: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-size: var(--font-size-body-lg);
+    font-family: var(--font-family);
+}
+
+h1 {
+	font-size: var(--font-size-h1-sm);
+    font-weight: var(--font-weight-title);
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: var(--font-size-h2-sm);
+    font-weight: var(--font-weight-title);
+    margin: 20px 0;
+}
+
+em {
+    font-style: italic;
+}
+
+a {
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--color-secondary);
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.page {
+    min-height: calc(100vh - 110px);
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
+
+.paragraph {
+    width: 70%;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+/* ******************** VARIOUS *********************************** */
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    border: 2px solid var(--color-primary);
+    padding: 2rem;
+    border-radius: 10px;
+    position: relative;
+    width: 30%;
+}
+
+.split {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    margin: 20px 0;
+}
+
+.filter-bloc {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: end;
+    gap: 2rem;
+}
+
+.filter-bloc > h2 {
+    width: 100%;
+}
+
+.table-bloc {
+    max-width: 80%;
+}
+
+.center {
+    justify-content: center;
+}
+
+/* ******************** SCROLLBAR *********************************** */
+
+body::-webkit-scrollbar {
+    display: none; /* Masque la scrollbar sur les navigateurs basés sur WebKit */
+}
+
+/* Style scrollbar pour Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px; /* Largeur et hauteur pour scroll horizontal */
+}
+
+/* Conteneur de la scrollbar */
+::-webkit-scrollbar-track {
+    background: transparent; /* Piste de fond */
+    border-radius: 10px;
+    border: 1px solid transparent; /* Bordure de la piste */
+}
+
+/* Poignée de la scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary); /* Couleur de la poignée */
+    border-radius: 10px; /* Arrondir les coins */
+    border: 3px solid var(--color-primary); /* Ajoute un espacement entre la piste et la poignée */
+}
+
+/* Poignée de la scrollbar au survol */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary); /* Couleur survolée */
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+@media (max-width: 920px) {
+
+    fieldset {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    fieldset p {
+        width: 100px;
+    }
+
+    .split {
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .filter-bloc {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .table-bloc {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding: 4rem 1rem;
+    }
+
+    body {
+        font-size: var(--font-size-body-md);
+    }
+
+    h1 {
+        font-size: var(--font-size-h2-sm);
+    }
+
+    h2 {
+        font-size: var(--font-size-h3-sm);
+    }
+
+    fieldset p {
+        width: 90px;
+    }
+
+    /* fieldset:nth-of-type(1) {
+        width: auto;
+    } */
+
+    .paragraph {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 670px) {
+    fieldset {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        font-size: var(--font-size-body-sm);
+    }
+    h1 {
+        font-size: var(--font-size-h3-lg);
+    }
+}

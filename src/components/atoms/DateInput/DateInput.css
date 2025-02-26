@@ -1,0 +1,199 @@
+fieldset.recent-filter-container {
+    height: auto;
+}
+
+.search-date {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem
+}
+
+.recent-filter-container .search-date {
+    justify-content: start;
+}
+
+fieldset legend {
+    font-weight: bold;
+    color: var(--color-primary); 
+    padding: 0 0.5rem;     
+    background: var(--color-secondary); 
+    position: absolute;  
+    top: -0.7rem;        
+    left: 1rem;            
+}
+
+.search-date p {
+    font-weight: 600;
+    width: 120px;
+}
+
+.date-picker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    max-width: 180px;
+    gap: 5px;
+}
+
+.date-picker input[type="text"],
+.date-picker select {
+    font-size: 12px;
+    padding: 5px 10px;
+    border: 2px solid #001367;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 180px;
+    background-color: #fff;
+    color: #333;
+}
+
+select option {
+    font-weight: 600;
+    color: var(--color-primary)
+}
+
+select option:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary)
+}
+
+.hidden-input{
+    display: none;
+}
+
+.date-picker input[type="text"]:focus {
+    border-color: #001367;
+    box-shadow: 0 0 10px #001367;
+}
+
+.date-picker .flatpickr-day:not(.flatpickr-disabled) {
+    background-color: white;
+    color: #001367;
+}
+
+.flatpickr-calendar .flatpickr-day:not(.flatpickr-disabled):hover,
+.flatpickr-calendar .flatpickr-day:not(.flatpickr-disabled):focus,
+.flatpickr-calendar .flatpickr-day:not(.flatpickr-disabled).selected,
+.flatpickr-calendar .flatpickr-day:not(.flatpickr-disabled).selected:hover,
+.flatpickr-calendar .flatpickr-day:not(.flatpickr-disabled).nextMonthDay.selected  {
+    background-color: #001367;
+    color: white;
+}
+
+.flatpickr-calendar .flatpickr-months .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-next-month {
+    background-color: white;
+    color: #001367;
+    fill: #001367;
+}
+
+.flatpickr-calendar .flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-calendar .flatpickr-months .flatpickr-next-month:hover {
+    background-color: #001367;
+    color: white;
+    fill: white;
+}
+
+.flatpickr-calendar .flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-calendar .flatpickr-months .flatpickr-next-month:hover svg {
+    fill: white;
+}
+
+.flatpickr-calendar .flatpickr-current-month .flatpickr-monthDropdown-months {
+    color: #001367;
+}
+
+.flatpickr-calendar .flatpickr-current-month input.cur-year {
+    color: #001367;
+}
+
+.date-picker input[type="text"].error-filter {
+    color: red;
+    border: 2px solid red;
+}
+
+.date-picker input[type="text"].error-filter:focus {
+    border-color: red;
+    box-shadow: 0 0 5px red;
+}
+
+.error-date-container {
+    height: 20px;
+    color: red;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .flatpickr-calendar {
+        width: 250px;
+    }
+
+    .flatpickr-calendar input[type="text"] {
+        width: 150px;
+    }
+
+    .flatpickr-calendar .flatpickr-calendar,
+    .flatpickr-calendar .flatpickr-weekdays,
+    .flatpickr-calendar .dayContainer {
+        width: 250px;
+        max-width: 250px;
+        min-width: 0;
+    }
+
+    .flatpickr-calendar .flatpickr-day {
+        max-width: 35px;
+        max-height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .date-picker {
+        max-width: 150px;
+    }
+
+    .date-picker input[type="text"],
+    .date-picker select {
+        width: 150px;
+        font-size: var(--font-size-text-sm-dialog);
+    }
+
+    .error-date-container {
+        height: 18px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 670px) {
+    .date-input-container .search-date{
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .date-input-container p {
+        margin-top: 5px;
+    }
+
+    .search-date p {
+        width: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .recent-filter-container .search-date{
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .recent-filter-container p {
+        margin-top: 5px;
+    }
+}
+

@@ -1,0 +1,85 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(60vh);
+}
+
+.loader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+}
+
+.loading-image {
+    width: 50%;
+    height: 50%;
+    z-index: 1;
+}
+
+.spinner {
+    position: absolute;
+    border: 4px solid transparent;
+    /* Bordures transparentes */
+    border-top: 10px solid var(--color-primary);
+    /* Couleur du cercle */
+    border-radius: 50%;
+    animation: spin 1.5s ease-out infinite;
+}
+
+.large-spinner {
+    width: 100%;
+    height: 100%;
+    animation-duration: 1.5s; /* Rotation normale */
+}
+
+.small-spinner {
+    width: 80%;
+    height: 80%;
+    animation-duration: 1.2s; /* Tourne plus vite */
+}
+
+.spinner:hover {
+    cursor: pointer;
+    animation-play-state: paused;
+}
+
+.loading-text {
+    margin-top: 50px;
+    font-size: var(--font-size-h3-lg);
+    color: var(--color-primary);
+}
+
+.small-text {
+    margin-top: 10px;
+    font-size: var(--font-size-h3-sm);
+    color: var(--color-primary);
+    text-align: center;
+}
+
+/* Animation pour le spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .loading-text {
+        margin-top: 40px;
+        font-size: var(--font-size-h3-sm);
+    }
+
+    .small-text {
+        font-size: var(--font-size-body-lg)
+    }
+}

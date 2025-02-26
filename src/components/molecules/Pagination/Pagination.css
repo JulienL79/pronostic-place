@@ -1,0 +1,39 @@
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.paginate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 50%;
+    color: #001367;
+    background-color: white;
+    border: 2px solid #001367;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.paginate-btn:hover {
+    color: white;
+    background-color: #001367;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+
+    .paginate-btn {
+        width: 40px;
+        height: 40px;
+    }
+}

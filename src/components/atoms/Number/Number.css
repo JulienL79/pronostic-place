@@ -1,0 +1,87 @@
+.ball {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.euromillions {
+    background: #001367;
+    color: white;
+}
+
+.loto {
+    background: #00a2d9;
+    color: white;
+}
+
+.euromillions-bonus {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    background: #eebb05;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%,
+            68% 57%, 79% 91%, 50% 70%,
+            21% 91%, 32% 57%, 2% 35%,
+            39% 35%);
+    /* Forme étoile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.loto-bonus {
+    background: #ea3946;
+    color: white;
+}
+
+.pronostic .ball,
+.pronostic .euromillions-bonus,
+.pronostic .loto-bonus {
+    width: 25px;
+    height: 25px;
+    font-size: 10px
+}
+
+@media (max-width: 768px) {
+    .ball,
+    .euromillions-bonus {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .table .ball,
+    .table .euromillions-bonus {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 470px) {
+    .table .ball,
+    .table .euromillions-bonus {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .pronostics .ball,
+    .pronostics .euromillions-bonus {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}

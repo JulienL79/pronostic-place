@@ -1,0 +1,197 @@
+.table-container {
+    overflow-y: auto;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px;
+}
+
+.table {
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.row,
+.row-title {
+    display: flex;
+    width: 100%;
+}
+
+.row-title {
+    display: flex;
+    font-size: var(--font-size-h3-lg);
+    height: 60px;
+    font-weight: 600;
+    padding: 0 10px;
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px 10px 0 0;
+}
+
+.header {
+    min-width: 0;
+    text-align: center;
+    align-content: center;
+}
+
+.table-body {
+    padding: 5px 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px;
+}
+
+.data {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 2px;
+}
+
+.result-date {
+    font-weight: bold;
+    text-align: center;
+}
+
+.euromillions-bonus {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    background: #eebb05;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%,
+            68% 57%, 79% 91%, 50% 70%,
+            21% 91%, 32% 57%, 2% 35%,
+            39% 35%);
+    /* Forme étoile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.error {
+    margin: 20px 0;
+    font-size: 24px;
+    font-weight: var(--font-weight-title);
+}
+
+/* TABLE PREDICT */
+
+.pronostic {
+    margin: 0 auto;
+    font-size: 12px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.pronostic .row-title {
+    font-size: var(--font-size-body-md);
+    padding-right: 20px;
+}
+
+.pronostic .filter-header {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2px;
+    gap: 2px;
+}
+
+.pronostic .filter-header i {
+    font-size: 12px;
+}
+
+.pronostic .filter-header:hover {
+    cursor: pointer;
+}
+
+.pronostic .data {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 2px;
+}
+
+.pronostic .row,
+.pronostic .row-title {
+    display: flex;
+    width: 100%;
+}
+
+.pronostic .row >* {
+    flex: 1;
+    text-align: center;
+    min-width: 14%;
+}
+
+.pronostic .table-body {
+    max-height: 250px;
+    overflow-y: auto;
+    /* Active le défilement vertical */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre avec un léger décalage, flou et transparence */
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .row-title {
+        font-size: var(--font-size-body-sm);
+    }
+
+    .ball {
+        width: 40px;
+        height: 40px;
+    }
+
+    .euromillions-bonus {
+        width: 40px;
+        height: 40px;
+    }
+
+    .pronostic .row-title {
+        font-size: 12px;
+        height: 50px;
+    }
+
+    .pronostic .result-date  {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .pronostic .row-title {
+        font-size: 10px;
+    }
+
+    .table .result-date  {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 470px) {
+
+    th {
+        font-size: var(--font-size-body-lg)
+    }
+
+    .pronostic .row-title {
+        font-size: 9px;
+    }
+
+    .pronostic .data {
+        font-size: 8px;
+    }
+
+    .table .result-date {
+        font-size: 10px;
+        padding: 0 5px;
+    }
+}
