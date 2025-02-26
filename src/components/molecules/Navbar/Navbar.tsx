@@ -2,8 +2,6 @@ import React from "react";
 import { INavbarProps } from "./Navbar.props";
 import { NavItem } from "@atoms/NavItem";
 import { useGameStore } from "@store/useGameStore";
-import { Image } from "@atoms/Image";
-import Logo from '/icon.png'
 import { minimalizeString } from "@utils/StringConverter";
 import { getGameSettings } from "@utils/getGameSettings";
 import "./Navbar.css"

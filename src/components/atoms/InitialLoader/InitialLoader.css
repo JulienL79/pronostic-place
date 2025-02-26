@@ -97,7 +97,7 @@
     margin: 0;
     border-radius: 50%;
     position: relative;
-    background: url(./icon.png) no-repeat;
+    background: url(/icon.png) no-repeat;
     background-size: 80%;
     background-position: center center;
 }

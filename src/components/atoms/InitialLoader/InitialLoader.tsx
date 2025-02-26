@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './InitialLoader.css'
-import { useDataStore } from '@store/useDataStore';
 
 export const InitialLoader = () => {
     const [visible, setVisible] = useState(true);
